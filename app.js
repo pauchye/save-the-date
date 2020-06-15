@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require("express");
 const app = express();
-const db = require('./config/keys').mongoURI;
+const mongoUri = require('./config/secrets').mongoURI;
 const bodyParser = require('body-parser');
 // for heroku
 const path = require('path');
@@ -21,7 +21,7 @@ app.use("/api/users", users);
 const passport = require('passport');
 
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(mongoUri, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
