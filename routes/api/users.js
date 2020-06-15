@@ -5,7 +5,7 @@ const User = require('../../models/User');
 //import webtoken
 const jwt = require('jsonwebtoken');
 //importing keys
-const keys = require('../../config/keys');
+const keys = require('../../config/secrets');
 const passport = require('passport');
 //import validations
 const validateRegisterInput = require('../../validation/register');
