@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react';
+// import MapView from '../map/map';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import mapCSS from './_map.css';
+import mapCSS from './_dash.css';
 const mapKey = require('../../secrets').googleMapKey
 
-export class MapView extends React.Component {
+class Dash extends React.Component {
     constructor(props) {
-        super(props)
-        // debugger
+      super(props);
+
     }
 
     static defaultProps = {
@@ -14,13 +15,12 @@ export class MapView extends React.Component {
         zoom: 13
      }
 
-
     render() {
-        // debugger
-        console.log('google.maps', this.props.google.maps.LatLngBounds )
-        return(
-
-                <Map 
+        return (
+            <div className = "dash-body">
+                <div className = "dash-cont">
+                    {/* <MapView /> */}
+                    <Map 
                 style={{width: '60%', height: '100%', position: 'relative'}}
                 google={this.props.google} 
                 zoom={14} 
@@ -43,10 +43,18 @@ export class MapView extends React.Component {
                         </div>
                     </InfoWindow> */}
                 </Map>
+                </div>
+                <div>
+                    <div>Input date</div>
+                    <div>Input time</div>
+                </div>
+            </div>
         )
     }
+
 }
 
 export default GoogleApiWrapper({
     apiKey: mapKey
-  })(MapView)
+  })(Dash)
+// export default Dash;
