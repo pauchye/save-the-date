@@ -1,0 +1,16 @@
+$pink: rgb(247, 210, 247);
+$blue: rgb(165, 228, 249);
+$white: rgb(243, 245, 246);
+$pure-wht: rgb(255, 255, 255);
+
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  background: url(/static/media/logo.315ecc7f.png);
+  width: 100%;
+  height: 100%;
+}
