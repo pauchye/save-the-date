@@ -2,3 +2,67 @@ $pink: rgb(247, 210, 247);
 $blue: rgb(165, 228, 249);
 $white: rgb(243, 245, 246);
 $pure-wht: rgb(255, 255, 255);
+
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  margin-top: -565px;
+  margin-left: 55px;
+}
+
+.login-email {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 214px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: transparent;
+  font-size: 20px;
+  border: transparent;
+  border-radius: 30px;
+  color: $pure-wht;
+}
+.login-email::placeholder {
+  color: rgb(54,54,54)
+}
+.login-email:focus {
+  outline: none;
+}
+
+.login-password {
+  margin-top: 80px;
+  margin-left: 61px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 214px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: transparent;
+  font-size: 20px;
+  border: transparent;
+  border-radius: 30px;
+  color: $pure-wht;
+}
+.login-password:focus {
+  outline: none;
+}
+.login-password::placeholder {
+  color: rgb(54,54,54)
+}
+
+
+.login-btn {
+  margin-top: 319px;
+  margin-left: 118px;
+  padding: 3px;
+  border-radius: 30px;
+  height: 56px;
+  background: radial-gradient($pink, $blue)
+}
+.login-btn:focus {
+  outline: none;
+}

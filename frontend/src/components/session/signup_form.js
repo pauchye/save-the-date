@@ -61,7 +61,7 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit}>
-          <img className="phone" src="/static/media/phone1.0b6820ef.png"></img>
+          <img className="phone" src={require(`./phone1.png`)}></img>
           <div className="signup-form">
             <br/>
               <input className="email" type="text"

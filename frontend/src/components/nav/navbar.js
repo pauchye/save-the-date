@@ -38,7 +38,7 @@ class NavBar extends React.Component {
   render() {
       return (
         <div className="nav">
-          <img className="phone" src="/static/media/logo.315ecc7f.png"></img>                
+          <img className="phone" src={require(`./logo.png`)}></img>
           { this.getLinks() }
         </div>
       );
