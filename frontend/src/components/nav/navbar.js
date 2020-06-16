@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-// import './navbar.css'
+import './navbar.scss'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -37,9 +37,9 @@ class NavBar extends React.Component {
 
   render() {
       return (
-        <div>
-            <h1>Save the Date</h1>
-            { this.getLinks() }
+        <div className="nav">
+          <img className="phone" src={require(`./logo.png`)}></img>
+          { this.getLinks() }
         </div>
       );
   }

@@ -8,9 +8,10 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import DashContainer from './dash/dash_container';
 
+import './app.scss'
 
 const App = () => (
-  <div>
+  <div className="app">
     <NavBarContainer />
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />

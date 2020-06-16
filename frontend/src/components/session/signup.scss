@@ -1,0 +1,113 @@
+$pink: rgb(247, 210, 247);
+$blue: rgb(165, 228, 249);
+$white: rgb(243, 245, 246);
+$pure-wht: rgb(255, 255, 255);
+
+.signup-form-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.phone {
+  max-width: 400px;
+}
+
+.signup-form {
+  margin-top: -582px;
+  margin-left: 55px;
+}
+
+.email {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 214px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: transparent;
+  font-size: 20px;
+  border: transparent;
+  color: $pure-wht;
+}
+.email::placeholder {
+  color: rgb(54,54,54)
+}
+.email:focus {
+  outline: none;
+}
+
+.username {
+  margin-top: 77px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 214px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: transparent;
+  font-size: 20px;
+  border: transparent;
+  border-radius: 30px;
+  color: $pure-wht;
+}
+.username:focus {
+  outline: none;
+}
+.username::placeholder {
+  color: rgb(54,54,54)
+}
+
+.password {
+  margin-top: 79px;
+  margin-left: 58px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 216px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  background: transparent;
+  font-size: 20px;
+  border: transparent;
+  border-radius: 30px;
+  color: $pure-wht;
+}
+.password:focus {
+  outline: none;
+}
+.password::placeholder {
+  color: rgb(54,54,54)
+}
+
+
+.password2 {
+  margin-top: 74px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 216px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  background: transparent;
+  font-size: 20px;
+  border: transparent;
+  border-radius: 30px;
+  color: $pure-wht;
+}
+.password2:focus {
+  outline: none;
+}
+.password2::placeholder {
+  color: rgb(54,54,54)
+}
+
+
+.join {
+  margin-top: 70px;
+  margin-left: 117px;
+  padding: 11px;
+  border-radius: 30px;
+  height: 56px;
+  background: radial-gradient($pink, $blue)
+}
+.join:focus {
+  outline: none;
+}
+

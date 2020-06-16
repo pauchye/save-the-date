@@ -1,0 +1,10 @@
+$pink: rgb(247, 210, 247);
+$blue: rgb(165, 228, 249);
+$white: rgb(243, 245, 246);
+$pure-wht: rgb(255, 255, 255);
+
+.app {
+  background: linear-gradient(150deg, $pure-wht, $pink, $blue, $pure-wht);
+  font-family: 'happy_brown_cat_shadow'
+}
+

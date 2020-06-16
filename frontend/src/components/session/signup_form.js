@@ -1,5 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './signup.scss'
+
+
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -58,33 +61,34 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit}>
+          <img className="phone" src={require(`./phone1.png`)}></img>
           <div className="signup-form">
             <br/>
-              <input type="text"
+              <input className="email" type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
-                placeholder="Email"
+                placeholder="enter your email"
               />
             <br/>
-              <input type="text"
+              <input className="username" type="text"
                 value={this.state.handle}
                 onChange={this.update('handle')}
-                placeholder="Handle"
+                placeholder="enter your username"
               />
             <br/>
-              <input type="password"
+              <input className="password" type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
-                placeholder="Password"
+                placeholder="enter your password"
               />
             <br/>
-              <input type="password"
+              <input className="password2" type="password"
                 value={this.state.password2}
                 onChange={this.update('password2')}
-                placeholder="Confirm Password"
+                placeholder="confirm your password"
               />
             <br/>
-            <input type="submit" value="Submit" />
+            <input className="join" type="submit" value="JOIN" />
             {this.renderErrors()}
           </div>
         </form>
