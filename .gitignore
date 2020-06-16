@@ -3,3 +3,4 @@ node_modules
 fontend/node_modules
 package-lock.json
 fontend/package-lock.json
+fontend/src/keys.js
