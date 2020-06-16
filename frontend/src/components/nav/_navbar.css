@@ -1,0 +1,9 @@
+.navbar{
+    position: fixed;
+    text-align: center;
+}
+
+.navbar-links{
+    display: flex;
+    flex-direction: column;
+}
