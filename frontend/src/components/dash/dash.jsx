@@ -190,11 +190,14 @@ const jsonStyle = [
 class Dash extends React.Component {
     constructor(props) {
       super(props);
-    //   debugger
-      this.state = {date: ''};
-      this.state.filteredEvents = this.props.events;
-    //   this.state.filteredDinings = this.props.dinings;
+    //   debugger;
+    //   this.props.fetchEvents();
+      this.state = {date: '',
+      filteredEvents: this.props.events
+    };
 
+    //   this.state.filteredDinings = this.props.dinings;
+        // debugger
       this.handleChange = this.handleChange.bind(this)
       this.filterListings = this.filterListings.bind(this)
       this.onReady = this.onReady.bind(this)
@@ -208,9 +211,11 @@ class Dash extends React.Component {
 
     componentDidMount(){
         // debugger
-        this.props.fetchEvents();
+        this.props.fetchEvents().then(
+            () => this.setState({filteredEvents: this.props.events[0]})
+        );
         // this.props.fetchDinings();
-        
+        // this.setState({filteredEvents: this.props.events[0]})
         // debugger
     }
 
@@ -240,7 +245,24 @@ class Dash extends React.Component {
 //    }
     filterListings(mapProps, map) {
         this.map = map;
-        console.log('onFilter', this.map.getBounds())
+        let NElat = this.map.getBounds().getNorthEast().lat();
+        let NElng = this.map.getBounds().getNorthEast().lng();
+        let SWlat = this.map.getBounds().getSouthWest().lat();
+        let SWlng = this.map.getBounds().getSouthWest().lng();
+        // console.log('NE lat', NElat)
+        // console.log('NE lng', NElng)
+        // console.log('SW lat', SWlat)
+        // console.log('SW lng', SWlng)
+        console.log('this.props.events[0]', this.props.events[0])
+        console.log('this.state', this.state)
+        let filteredEvents = this.props.events[0].filter(event => {
+            return(
+                (event.lat < NElat && event.lat > SWlat)&&(event.lng < NElng && event.lng > SWlng)
+            )
+        })
+        this.setState({filteredEvents: filteredEvents})
+        console.log('this.state', this.state)
+
     }
 
     onReady(props, map) {
@@ -253,8 +275,9 @@ class Dash extends React.Component {
 
         const events = this.props.events[0];
         // const dinings = this.props.dinings[0];
-  
+        
         if(!events) return null;
+        
         // if(!dinings) return null;
         // debugger
         return (
@@ -312,7 +335,10 @@ class Dash extends React.Component {
                     </div>
                     <div>Choose the date</div>
                     <div className="dash-placehold">
-
+                        <ul>
+                          {this.state.filteredEvents.map((event, id)=>
+                           {return (<li key={id}>{event.title}</li>)})}
+                        </ul>
                     </div>
                   
                 </div>
