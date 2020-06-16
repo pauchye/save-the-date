@@ -5,6 +5,7 @@ const mongoUri = require('./config/secrets').mongoURI;
 const bodyParser = require('body-parser');
 // for heroku
 const path = require('path');
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
     app.get('/', (req, res) => {
@@ -17,13 +18,20 @@ app.use(bodyParser.json());
 // from user routes
 const users = require("./routes/api/users");
 app.use("/api/users", users);
+
+const events = require("./routes/api/events")
+app.use("/api/events", events);
+
+const dinings = require("./routes/api/dinings");
+app.use("/api/dinings", dinings);
+
 // require Pasport
 const passport = require('passport');
 
 mongoose
-  .connect(mongoUri, { useNewUrlParser: true })
+  .connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // You can now delete our 'Hello World' route
 // app.get("/", (req, res) => res.send("Hello World"));
