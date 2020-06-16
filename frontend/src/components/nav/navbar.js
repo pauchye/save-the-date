@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+
 import navbarCSS from './_navbar.css'
+import './navbar.scss'
+
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -37,6 +40,7 @@ class NavBar extends React.Component {
 
   render() {
       return (
+
         <div className="navbar">
             <h1>Save the Date</h1>
             { this.getLinks() }

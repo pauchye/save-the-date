@@ -1,5 +1,7 @@
 import React from 'react';
+
 import mainCSS from "./_main.css"
+
 
 class MainPage extends React.Component {
   constructor(props){
