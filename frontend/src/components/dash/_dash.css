@@ -1,0 +1,8 @@
+.dash-body {
+    display: flex;
+}
+
+.dash-cont {
+    height: 100%;
+    width: 100%;
+}
