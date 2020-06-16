@@ -186,13 +186,14 @@ const jsonStyle = [
     }
   ]
 
-
+  
 class Dash extends React.Component {
     constructor(props) {
       super(props);
       this.state = {date: ''};
       this.handleChange = this.handleChange.bind(this)
       this.filterListings = this.filterListings.bind(this)
+      this.onReady = this.onReady.bind(this)
     }
 
     static defaultProps = {
@@ -225,16 +226,15 @@ class Dash extends React.Component {
 //     })
 //    }
     filterListings(mapProps, map) {
-        // let bounds = this.props.google.maps.LatLngBounds;
-        // console.log(this.props.google)
-        // console.log(bounds)
-        // console.log(mapProps)
-        // console.log(map)
-        console.log('filter', arguments)
-        console.log('this.props.google', this.props.google)
-        console.log('this.props.google.maps.LatLngBounds.toJSON', this.props.google.maps.LatLngBounds.toJSON)
-        console.log('this.props.google.maps.LatLngBounds.getNorthEast', this.props.google.maps.LatLngBounds.getNorthEast)
+        this.map = map;
+        console.log('onFilter', this.map.getBounds())
 
+    }
+
+    onReady(props, map) {
+        this.map = map;
+        console.log('onReady map:', this.map.getBounds())
+        // debugger;
     }
 
     render() {
@@ -248,6 +248,8 @@ class Dash extends React.Component {
                 style={{width: '60%', 
                 height: '100%', 
                 position: 'relative',
+                borderRadius: "20px",
+                paddingLeft: "20px"
             }}
                 google={this.props.google} 
                 zoom={14} 
@@ -255,9 +257,10 @@ class Dash extends React.Component {
                     lat: 40.7678805,
                     lng: -73.97103059999999
                   }}
+                  onReady= {this.onReady}
                   onZoomChanged = {this.filterListings}
                   onDragend = {this.filterListings}
-                >
+                > 
                     {markers.map((marker, id)=>{
                         return <Marker
                         key={id}
@@ -279,11 +282,14 @@ class Dash extends React.Component {
                     </InfoWindow> */}
                 </Map>
                 </div>
-                <div>
+                <div className="dash-right" >
                     <div> 
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
                     <div>Choose the date</div>
+                    <div className="dash-placehold">
+
+                    </div>
                   
                 </div>
             </div>
