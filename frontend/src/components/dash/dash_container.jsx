@@ -1,17 +1,22 @@
 import { connect } from 'react-redux';
 import Dash from './dash';
+// import { fetchDinings } from '../../actions/dining_actions'
+import { fetchEvents } from '../../actions/event_actions'
 
 const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
-        state: state
+        // dinings: Object.values(state.dinings),
+        events: Object.values(state.events)
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         smth: () => dipatch(smth())
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    // debugger
+    return {
+        // fetchDinings: () => dispatch(fetchDinings()),
+        fetchEvents: () => dispatch(fetchEvents())
+    }
+}
 
-export default connect(mapStateToProps ,null)(Dash);
+export default connect(mapStateToProps ,mapDispatchToProps)(Dash);

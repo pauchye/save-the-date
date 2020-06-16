@@ -190,16 +190,29 @@ const jsonStyle = [
 class Dash extends React.Component {
     constructor(props) {
       super(props);
+    //   debugger
       this.state = {date: ''};
+      this.state.filteredEvents = this.props.events;
+    //   this.state.filteredDinings = this.props.dinings;
+
       this.handleChange = this.handleChange.bind(this)
       this.filterListings = this.filterListings.bind(this)
       this.onReady = this.onReady.bind(this)
+      
     }
 
     static defaultProps = {
         center: {lat: 40.7678805, lng: -73.97103059999999}, 
         zoom: 13
      }
+
+    componentDidMount(){
+        // debugger
+        this.props.fetchEvents();
+        // this.props.fetchDinings();
+        
+        // debugger
+    }
 
 
     handleChange(input){
@@ -228,7 +241,6 @@ class Dash extends React.Component {
     filterListings(mapProps, map) {
         this.map = map;
         console.log('onFilter', this.map.getBounds())
-
     }
 
     onReady(props, map) {
@@ -238,6 +250,13 @@ class Dash extends React.Component {
     }
 
     render() {
+
+        const events = this.props.events[0];
+        // const dinings = this.props.dinings[0];
+  
+        if(!events) return null;
+        // if(!dinings) return null;
+        // debugger
         return (
             <div className = "dash-body">
                 <div className = "dash-cont">
@@ -245,7 +264,7 @@ class Dash extends React.Component {
                     <Map 
                 styles = {jsonStyle}    
                 // options={mapOptions}    
-                style={{width: '60%', 
+                style={{width: '40%', 
                 height: '100%', 
                 position: 'relative',
                 borderRadius: "20px",
@@ -261,12 +280,17 @@ class Dash extends React.Component {
                   onZoomChanged = {this.filterListings}
                   onDragend = {this.filterListings}
                 > 
-                    {markers.map((marker, id)=>{
+                    {events.map((event, id)=>{
+                        // console.log('event', event)
+                        let lat = event.lat;
+                        let lng = event.lng;
+                        // console.log('{event.lat, event.lng}', {lat, lng} )
+                        // console.log('marker', markers[0] )
                         return <Marker
                         key={id}
                         title={'Title 1'}
                         name={'Name 1'}
-                        position={marker} />
+                        position={{lat, lng}} />
                     })}
 
                     
