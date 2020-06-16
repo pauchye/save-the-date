@@ -3,18 +3,18 @@ import { getDining, getDinings } from "../util/dinings_util";
 export const RECEIVE_DININGS = "RECEIVE_DININGS";
 export const RECEIVE_DINING = "RECEIVE_DINING";
 
-const receiveDinings = (Dinings) => ({
+const receiveDinings = (dinings) => ({
   type: RECEIVE_DININGS,
-  Dinings,
+  dinings
 });
 
-const receiveDining = (Dining) => ({
+const receiveDining = (dining) => ({
   type: RECEIVE_DINING,
-  Dining,
+  dining
 });
 
 export const fetchDinings = () => (dispatch) =>
-  getDinings().then((Dinings) => dispatch(receiveDinings(Dinings)));
+  getDinings().then((dinings) => dispatch(receiveDinings(dinings)));
 
-export const fetchDining = (DiningId) => (dispatch) =>
-  getDining(DiningId).then((Dining) => dispatch(receiveDining(Dining)));
+export const fetchDining = (diningId) => (dispatch) =>
+  getDining(diningId).then((dining) => dispatch(receiveDining(dining)));
