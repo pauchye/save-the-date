@@ -2,10 +2,11 @@ import React from 'react';
 // import MapView from '../map/map';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import mapCSS from './_dash.css';
-const mapKey = require('../../secrets').googleMapKey
+import secrets from '../../secrets'
+
+const {googleMapKey} = secrets;
 
 const markers = [ {lat: 40.8678805, lng: -73.87103059999999}, {lat: 40.05, lng: -73.9999999}, {lat: 40.7678805, lng: -73.97103059999999}]
-
 
 const jsonStyle = [
     {
@@ -349,6 +350,6 @@ class Dash extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: mapKey
+    apiKey: googleMapKey
   })(Dash)
 // export default Dash;
