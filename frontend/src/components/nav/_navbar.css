@@ -1,6 +1,8 @@
 .navbar{
-    position: fixed;
+    /* position: fixed; */
     text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .navbar-links{

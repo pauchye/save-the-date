@@ -183,14 +183,21 @@ class Calender extends React.Component {
                         onDrop={this.drop}
                         onDragOver={this.allowDrop}>
                         <h3>Results go here</h3>
-                        <div
-                            className="drag-this2"
-                            draggable="true"
-                            onDragStart={this.drag}
-                        >
-                            <h4>DINING EVENT</h4>
-                            <h6>DINING EVENT DESCRIPTION</h6>
-                        </div>
+                       
+                            
+                          {this.props.events.map((event, id)=>
+                           {return (<div key={id} 
+                           draggable="true"
+                           className="drag-this2"
+                           onDragStart={this.drag}
+                           >
+                              <h4>{event.title}</h4> 
+                                <h6>{event.description}</h6>
+                               </div>)})}
+                        
+                            {/* <h4>DINING EVENT</h4> */}
+                            
+                        
                     </div>
                 </div>
             );
