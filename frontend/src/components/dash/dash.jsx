@@ -249,6 +249,7 @@ class Dash extends React.Component {
         // debugger;
     }
 
+
     render() {
 
         const events = this.props.events[0];
@@ -284,6 +285,9 @@ class Dash extends React.Component {
                         // console.log('event', event)
                         let lat = event.lat;
                         let lng = event.lng;
+                        // const bound = this.map.getBounds();
+
+                        // console.log(bound)
                         // console.log('{event.lat, event.lng}', {lat, lng} )
                         // console.log('marker', markers[0] )
                         return <Marker

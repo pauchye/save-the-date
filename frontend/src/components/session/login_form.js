@@ -7,30 +7,33 @@ class LoginForm extends React.Component {
     super(props);
 
     this.state = {
-      email: '',
-      password: '',
-      errors: {}
+      email: "",
+      password: "",
+      errors: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
   }
 
   // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      this.props.history.push('/dash');
+      this.props.history.push("/dash");
     }
 
     // Set or clear errors
-    this.setState({errors: nextProps.errors})
+    this.setState({ errors: nextProps.errors });
   }
 
   // Handle field updates (called in the render method)
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return (e) =>
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
   }
 
   // Handle form submission
@@ -39,20 +42,29 @@ class LoginForm extends React.Component {
 
     let user = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
 
-    this.props.login(user); 
+    this.props.login(user);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    this.setState(
+      {
+        email: "andy@test.com",
+        password: "123456",
+      },
+      () => this.props.login(Object.assign({}, this.state))
+    );
   }
 
   // Render the session errors if there are any
   renderErrors() {
-    return(
+    return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
+          <li key={`error-${i}`}>{this.state.errors[error]}</li>
         ))}
       </ul>
     );
@@ -64,21 +76,33 @@ class LoginForm extends React.Component {
         <form className="" onSubmit={this.handleSubmit}>
           <img className="phone" src={require(`./phone2.png`)}></img>
           <div className="login-form">
-              <input className="login-email" type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                placeholder="Email"
-              />
-            <br/>
-              <input className="login-password" type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-            <br/>
-            <input className='login-btn' type="submit" value="LOG IN" />
+            <input
+              className="login-email"
+              type="text"
+              value={this.state.email}
+              onChange={this.update("email")}
+              placeholder="Email"
+            />
+            <br />
+            <input
+              className="login-password"
+              type="password"
+              value={this.state.password}
+              onChange={this.update("password")}
+              placeholder="Password"
+            />
+            <br />
+            <input className="login-btn" type="submit" value="LOG IN" />
             {this.renderErrors()}
           </div>
+
+          <div>
+            <button onClick={this.handleClick} className="">
+              Demo Login
+            </button>
+          </div>
+
+          <br />
         </form>
       </div>
     );
