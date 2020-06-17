@@ -1,6 +1,7 @@
 .calender-results-page{
     display: flex;
     background-color: rgb(165, 228, 249);
+    border-radius: 20px;
 }
 
 .calender{
@@ -17,6 +18,7 @@
     display: flex;
     width: 100%;
     background-color: rgb(165, 228, 249);
+    /* border-radius: 5px; */
 }
 
 .calender div h4{
@@ -59,3 +61,16 @@ h3{
     margin: 10px;
     color: white;
 }
+
+.cal-button {
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-image: linear-gradient(-90deg,rgb(247, 210, 247),rgb(243, 245, 246),rgb(165, 228, 249));
+    /* background-color: #fff; */
+    padding: 7px 30px;
+    box-shadow: inset 0 3px 6px rgba(66, 1, 61, 0.1);
+    font-weight: 700;
+  }

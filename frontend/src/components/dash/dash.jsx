@@ -291,10 +291,10 @@ class Dash extends React.Component {
                 styles = {jsonStyle}    
                 // options={mapOptions}    
                 style={{width: '40%', 
-                height: '100%', 
+                height: '85%', 
                 position: 'relative',
                 borderRadius: "20px",
-                paddingLeft: "20px"
+                // paddingLeft: "20px"
             }}
                 google={this.props.google} 
                 zoom={14} 
@@ -339,20 +339,20 @@ class Dash extends React.Component {
                     <div> 
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
-                    <div>Choose the date</div>
-                    <div>
+                    
                     <Calendar 
                       events={this.state.filteredEvents}
+                      date = {this.state.date}
                     />
-                    </div>
-                    <div className="dash-placehold">
+                </div>
+                    {/* <div className="dash-placehold">
                         <ul>
                           {this.state.filteredEvents.map((event, id)=>
                            {return (<li key={id}>{event.title}</li>)})}
                         </ul>
-                    </div>
+                    </div> */}
                   
-                </div>
+                
             </div>
         )
     }

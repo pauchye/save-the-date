@@ -25,14 +25,14 @@ class NavBar extends React.Component {
                 {/* <Link to={'/tweets'}>All Tweets</Link>
                 <Link to={'/profile'}>Profile</Link>
                 <Link to={'/new_tweet'}>Write a Tweet</Link> */}
-                <button onClick={this.logoutUser}>Logout</button>
+                <button className='nav-button' onClick={this.logoutUser}>Logout</button>
             </div>
         );
       } else {
         return (
           <div className="navbar-links">
-                <Link to={'/signup'}>Signup</Link>
-                <Link to={'/login'}>Login</Link>
+                <Link to={'/signup'} className='nav-button'>Signup</Link>
+                <Link to={'/login'} className='nav-button'>Login</Link>
           </div>
         );
       }
