@@ -9,6 +9,7 @@ import SignupFormContainer from './session/signup_form_container';
 
 import CalenderContainer from './calender/calender_container';
 import DashContainer from './dash/dash_container';
+// import DashShow from './dash/dash_show';
 
 
 import './app.scss'
@@ -19,6 +20,8 @@ const App = () => (
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />
         <ProtectedRoute exact path="/dash" component={DashContainer} />
+        {/* <ProtectedRoute exact path="/dash/show" component={DashShow} /> */}
+
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path="/calender" component={CalenderContainer} />
