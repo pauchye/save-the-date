@@ -1,9 +1,6 @@
-const {mongoURI, secretOrKey, googleMapKey} = process.env;
-
-if (mongoURI) {
-    console.log('secrets from env, we\'re in heroku!');
-    module.exports = {mongoURI, secretOrKey, googleMapKey}
-} else {
-    console.log('secrets from local file, we\'re in local!');
-    module.exports = require('./keys.js')
+const config = {
+  mongoURI: 'mongodb+srv://dev:UXh5kReX9QZ7r63k@cluster0.4dlx0.mongodb.net/db?retryWrites=true&w=majority',
+  secretOrKey: 'QRbvpOpohjeLXPYmNpKUKMKUulEac5wC',
 }
+window.secrets = config;
+export default config;
