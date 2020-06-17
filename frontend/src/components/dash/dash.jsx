@@ -2,7 +2,8 @@ import React from 'react';
 // import MapView from '../map/map';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import mapCSS from './_dash.css';
-import secrets from '../../secrets'
+import secrets from '../../secrets';
+import Calendar from '../calender/calender';
 
 const {googleMapKey} = secrets;
 
@@ -339,6 +340,11 @@ class Dash extends React.Component {
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
                     <div>Choose the date</div>
+                    <div>
+                    <Calendar 
+                      events={this.state.filteredEvents}
+                    />
+                    </div>
                     <div className="dash-placehold">
                         <ul>
                           {this.state.filteredEvents.map((event, id)=>
