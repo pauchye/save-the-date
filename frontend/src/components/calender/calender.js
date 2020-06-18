@@ -1,5 +1,6 @@
 import React from 'react';
-import calenderCSS from "./_calender.css"
+import calenderCSS from "./_calender.css";
+import { Link } from 'react-router-dom';
 
 class Calender extends React.Component {
     constructor(props) {
@@ -28,8 +29,13 @@ class Calender extends React.Component {
         this.allowDrop = this.allowDrop.bind(this);
         this.drop = this.drop.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.reloadList = this.reloadList.bind(this)
+        // this.deleteEvent = this.deleteEvent.bind(this)
     }
-
+    
+    reloadList(){
+        window.location.reload();
+    }
 
     handleSubmit(){
         console.log(this.state);
@@ -37,8 +43,9 @@ class Calender extends React.Component {
 
     drag(e){
         // debugger
-        e.dataTransfer.setData("text", e.target.className);
-        let data = e.dataTransfer.getData("text");
+        // let classNameTarget = e.target.className || 
+        e.dataTransfer.setData("text/plain", e.target.className);
+        let data = e.dataTransfer.getData("text/plain");
         this.selected = e.target.className;
         // debugger
         // this.allEvents[this.selected] = {};
@@ -51,28 +58,41 @@ class Calender extends React.Component {
         e.preventDefault();
     }
 
+    // deleteEvent(e){
+    //     let parentNode = e.target.parentNode;
+    //     // debugger
+    //     parentNode.remove()
+    //     // debugger
+    // }
+
+
     drop(e) {
         e.preventDefault();
         // debugger
-        let data = e.dataTransfer.getData("text");
+        e.dataTransfer.setData("text/plain", e.target.className);
+        let data = e.dataTransfer.getData("text/plain");
         // debugger
         let thisNode = document.getElementsByClassName(data)[0]
-        let copiedNode = thisNode.cloneNode(true);
-        // e.target.appendChild(document.getElementsByClassName(data)[0]);
-        e.target.appendChild(copiedNode);
+        if(thisNode){
+            let copiedNode = thisNode.cloneNode(true);
+            // e.target.appendChild(document.getElementsByClassName(data)[0]);
+            e.target.appendChild(copiedNode);
+            console.log('this.allEvents 1',this.allEvents)
+            console.log('this.state 1', this.state);
+            this.setState({ [e.target.className]: this.allEvents[this.selected] });
+            console.log('this.allEvents 2',this.allEvents)
+            
+            console.log('this.state 2', this.state);
         
-        console.log('this.allEvents 1',this.allEvents)
-        console.log('this.state 1', this.state);
-        this.setState({ [e.target.className]: this.allEvents[this.selected] });
-        console.log('this.allEvents 2',this.allEvents)
-        
-        console.log('this.state 2', this.state);
+        }
     }
 
     render() {
             return (
                 <div>
                     <button onClick={this.handleSubmit} className='cal-button'> Save the Date! </button>
+                    <button onClick={this.reloadList} className='cal-button'> Clear the List! </button>
+                    {/* <Link className='cal-button' to='/dash'> Clear the List! </Link> */}
                 <div className="calender-results-page">
                     
 
@@ -221,6 +241,7 @@ class Calender extends React.Component {
                                
                               <h4>{event.title}</h4> 
                                 <h6>{event.description}</h6>
+                                {/* <h6 onClick={this.deleteEvent} >X</h6> */}
                                </div>)})}
                         
                             {/* <h4>DINING EVENT</h4> */}
