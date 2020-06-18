@@ -7,10 +7,12 @@ import "../modal/modal.scss"
 // import "./modal.scss";
 
 const mSTP = state => {
+  // debugger
+    if (!state.session.user) return null;
+
     return {
-        currentUser: state.session.currentUser,
-        events: Object.values(state.events)
-    }
+      history: state.session.user.history,
+    };
 }
 
 const mDTP = dispatch => {
@@ -31,18 +33,50 @@ class ProfileDropDown extends React.Component{
     // }
 
     handleClick(e){
-        e.preventDefault();
-        this.props.logout().then(this.props.closeModal)
-        // this.props.logout()
+      e.preventDefault();
+      // this.props.logout().then(this.props.closeModal)
+      this.props.logout();
+      this.props.closeModal();
     }
 
     render(){
-        // const {events} = this.props;
+
+      
+      if (!this.props.history)
+      return (
+        <div className="modal-child-div">
+            <div className="modal-child-div1">
+              <p>You don't have a schedule yet</p>
+            </div>
+
+            <div>
+              <button onClick={this.handleClick} className="dash-cal">
+                Logout
+              </button>
+            </div>
+          </div>
+        );
+        
+      const history = this.props.history[this.props.history.length-1];
+      const allEvents = history[1].map((event,idx) => {
+        // debugger;
+        if (event){
+        return (
+        <li>
+        {idx+9} : {event.title}
+
+        </li>
+        )}
+      });
+
         return (
           <div className="modal-child-div">
             <div className="modal-child-div1">
               <p>Your past dating schedual</p>
               <ul>
+                <h1>{history[0]}</h1>
+                <ul>{allEvents}</ul>
+
                 <li>This is the drop down</li>
               </ul>
             </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import navbarCSS from "./_navbar.css";
 import "./navbar.scss";
 
-const NavBar = ({ loggedIn, currentUser, logout, openModal }) => {
+const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
     // debugger;
   const sessionLinks = () => (
     <div className="navbar">
@@ -19,9 +19,11 @@ const NavBar = ({ loggedIn, currentUser, logout, openModal }) => {
   const greeting = () => (
     <div>
       <h1>Save the Date</h1>
-      <a className="l" onClick={() => openModal("profileDropDown")}>
+      <a className="l" onClick={() => {
+        fetchUser(currentUser.id)
+        openModal("profileDropDown")
+    }}>
         <span className="modal-buton">welcome {currentUser.handle}</span>
-        {/* <button onClick={logout}>Logout</button> */}
       </a>
     </div>
   );

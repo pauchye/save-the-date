@@ -7,14 +7,18 @@ import CheckOut from "../user/checkout_dropdown"
 
 import { logout } from '../../actions/session_actions';
 import './modal.scss'
+import { fetchUser } from '../../actions/user_actions';
 const mSTP = state => {
+    // debugger;
     return {
-        modal: state.ui.modal
+        modal: state.ui.modal,
+        // userId: state.session.user.id
     }
 }
 
 const mDTP = dispatch => {
     return {
+        // fetchUser: (userId) => dispatch(fetchUser(userId)),
         closeModal: () => dispatch(closeModal()),
         logout: () => dispatch(logout())
     }

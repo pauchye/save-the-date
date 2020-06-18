@@ -3,10 +3,9 @@ import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import mapCSS from './_dash.css';
 import secrets from '../../secrets';
-import Calendar from '../calender/calender';
+import CalendarContainer from '../calender/calender_container';
 import { openModal } from '../../actions/modal_actions';
 import LocationShow from './location_show';
-
 
 const {googleMapKey} = secrets;
 
@@ -195,7 +194,7 @@ const jsonStyle = [
 class Dash extends React.Component {
     constructor(props) {
       super(props);
-    //   debugger;
+      // debugger;
     //   this.props.fetchEvents();
       this.state = {date: '',
       filteredEvents: this.props.events
@@ -215,7 +214,11 @@ class Dash extends React.Component {
      }
 
     componentDidMount(){
-        // debugger
+        this.props.fetchUsers();
+        
+        const userId = this.props.currentUser.id;
+        this.props.fetchUser(userId);
+        
         this.props.fetchEvents().then(
             () => this.setState({filteredEvents: this.props.events[0]})
         );
@@ -354,6 +357,7 @@ class Dash extends React.Component {
                         //         </InfoWindow>
                     })}
 
+
                     
                     
  
@@ -375,9 +379,10 @@ class Dash extends React.Component {
                     <a onClick={() => openModal("checkOut")}>Choose the date</a>
                     <div>
 
-                    <Calendar 
+                    <CalendarContainer 
                       events={this.state.filteredEvents}
                       date = {this.state.date}
+                      
                     />
                 </div>
                     {/* <div className="dash-placehold">
@@ -387,7 +392,7 @@ class Dash extends React.Component {
                         </ul>
                     </div> */}
                   
-                
+            </div>
             </div>
         )
     }

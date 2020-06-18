@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
   
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
-          const payload = { id: user.id, handle: user.handle };
+          const payload = { id: user.id, handle: user.handle, email: user.email, history: user.history};
   
           jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
             res.json({
@@ -96,13 +96,20 @@ router.post("/login", (req, res) => {
     });
   });
 
-  router.patch('/:id',
-    (req, res) => {
-      User.findById({user: req.user.id})
-        .then(user => res.json({
-          user: user
-        }))
-    }
-  )
+
+
+
+  router.patch("/:id", (req, res) => {
+    // debugger;
+    // User.findById(req.params.id).update({ history: req.body.history })
+    User.findById(req.params.id)
+      .update({ $push: { history: req.body.history } })
+      // .update({ history: req.body.history })
+      .then((result) => {
+        res.json(result);
+      });
+  });
+
+
 
 module.exports = router;
