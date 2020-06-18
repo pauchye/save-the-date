@@ -32,11 +32,14 @@ class NavBar extends React.Component {
                 <Link to={'/profile'}>Profile</Link>
                 <Link to={'/new_tweet'}>Write a Tweet</Link> */}
 
+
             <div>
               {/* <a className="l" onClick={() => openModal("profileDropDown")}>
                 <span className="modal-buton">welcome</span>
               </a> */}
               <button onClick={() => openModal("profileDropDown")}>welcome</button>
+
+                <button className='nav-button' onClick={this.logoutUser}>Logout</button>
             </div>
 
             <button onClick={this.logoutUser}>Logout</button>
@@ -45,8 +48,8 @@ class NavBar extends React.Component {
       } else {
         return (
           <div className="navbar-links">
-                <Link to={'/signup'}>Signup</Link>
-                <Link to={'/login'}>Login</Link>
+                <Link to={'/signup'} className='nav-button'>Signup</Link>
+                <Link to={'/login'} className='nav-button'>Login</Link>
           </div>
         );
       }
