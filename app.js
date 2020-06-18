@@ -6,6 +6,62 @@ const bodyParser = require('body-parser');
 // for heroku
 const path = require('path');
 
+// const router = express.Router();
+// const multer = require("multer");
+// const AWS = require('aws-sdk');
+// const storage = multer.memoryStorage();
+// const upload = multer({storage: storage})
+// const EVENT = require("./models/Event")
+
+// router.post('/upload', upload.single('file'), function(req, res){
+//   const file = req.file;
+//   const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
+  
+//   let s3bucket = new AWS.S3({
+//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//     region: process.env.AWS_REGION
+//   });
+
+//   const params = {
+//     Bucket: process.env.AWS_BUCKET_NAME,
+//     Key: file.originalname,
+//     Body: file.buffer,
+//     ContentType: file.mimetype,
+//     ACL: "public-read"
+//   };
+
+  // s3bucket.upload(params, function(err, data){
+
+  //   if(err){
+  //       res.status(500).json({
+  //         error: true,
+  //         Message: err
+  //       })  
+  //     } else {
+
+  //       res.send({data});
+        
+  //       const newFileUploaded = {
+  //         description: req.body.description,
+  //         fileLink: s3FileURL + file.originalname
+  //       };
+
+  //       const event = new EVENT(newFileUploaded);       
+  //       event.save(function(error, newFile){ ///?????????????
+  //         if(error){
+  //           throw error;
+  //         }
+  //       })
+  //     }
+  //   }
+  // });
+// });
+
+
+
+
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
     app.get('/', (req, res) => {
@@ -27,6 +83,7 @@ app.use("/api/dinings", dinings);
 
 // require Pasport
 const passport = require('passport');
+const router = require('./routes/api/users');
 
 mongoose
   .connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })

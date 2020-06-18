@@ -16,7 +16,8 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     res.json({
       id: req.user.id,
       handle: req.user.handle,
-      email: req.user.email
+      email: req.user.email,
+      history: req.user.history
     });
   })
 
@@ -61,7 +62,7 @@ router.post("/register", (req, res) => {
     });
   });
 
-  router.post("/login", (req, res) => {
+router.post("/login", (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
   
     if (!isValid) {
@@ -79,7 +80,7 @@ router.post("/register", (req, res) => {
   
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
-          const payload = { id: user.id, handle: user.handle };
+          const payload = { id: user.id, handle: user.handle, email: user.email, history: user.history};
   
           jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
             res.json({
@@ -94,5 +95,21 @@ router.post("/register", (req, res) => {
       });
     });
   });
+
+
+
+
+  router.patch("/:id", (req, res) => {
+    // debugger;
+    // User.findById(req.params.id).update({ history: req.body.history })
+    User.findById(req.params.id)
+      .update({ $push: { history: req.body.history } })
+      // .update({ history: req.body.history })
+      .then((result) => {
+        res.json(result);
+      });
+  });
+
+
 
 module.exports = router;

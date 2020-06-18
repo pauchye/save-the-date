@@ -10,13 +10,14 @@ import SignupFormContainer from './session/signup_form_container';
 import CalenderContainer from './calender/calender_container';
 import DashContainer from './dash/dash_container';
 // import DashShow from './dash/dash_show';
-
+import Modal from './modal/modal'
 
 import './app.scss'
 
 const App = () => (
   <div className="app">
     <NavBarContainer />
+    <Modal/>
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />
         <ProtectedRoute exact path="/dash" component={DashContainer} />

@@ -3,7 +3,9 @@ import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import mapCSS from './_dash.css';
 import secrets from '../../secrets';
-import Calendar from '../calender/calender';
+import CalendarContainer from '../calender/calender_container';
+import { openModal } from '../../actions/modal_actions';
+import LocationShow from './location_show';
 
 const {googleMapKey} = secrets;
 
@@ -192,7 +194,7 @@ const jsonStyle = [
 class Dash extends React.Component {
     constructor(props) {
       super(props);
-    //   debugger;
+      // debugger;
     //   this.props.fetchEvents();
       this.state = {date: '',
       filteredEvents: this.props.events
@@ -212,7 +214,11 @@ class Dash extends React.Component {
      }
 
     componentDidMount(){
-        // debugger
+        this.props.fetchUsers();
+        
+        const userId = this.props.currentUser.id;
+        this.props.fetchUser(userId);
+        
         this.props.fetchEvents().then(
             () => this.setState({filteredEvents: this.props.events[0]})
         );
@@ -227,6 +233,18 @@ class Dash extends React.Component {
             this.setState({[input]: e.currentTarget.value})
         }
     }
+
+
+    // onClick(e){
+    //   e.preventDefault();
+    //   return (
+    //     <LocationShow
+    //       title={this.event.title}
+    //       description={this.event.description}
+    //     />
+    //   )
+    // }
+
 
     // placeMarker(location) {
     //     let marker = new google.maps.Marker({
@@ -315,12 +333,30 @@ class Dash extends React.Component {
                         // console.log(bound)
                         // console.log('{event.lat, event.lng}', {lat, lng} )
                         // console.log('marker', markers[0] )
+                        // debugger;
+                        // <LocationShow
+                        //   title={event.title}
+                        // />
+                        
+                        // <LocationShow
+                        //   event={event}
+                        // />
+
                         return <Marker
+                        onClick={()=> this.props.openModal('locationShow')}
                         key={id}
-                        title={'Title 1'}
-                        name={'Name 1'}
-                        position={{lat, lng}} />
+                        title={event.title}
+                        // name={'Name 1'}
+                        position={{lat, lng}}
+                        className="Marker"
+                        />
+
+                        // return <InfoWindow content={event.title}
+                        //         visible={true} 
+                        //         position={{ lat, lng }}>
+                        //         </InfoWindow>
                     })}
+
 
                     
                     
@@ -339,10 +375,14 @@ class Dash extends React.Component {
                     <div> 
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
-                    
-                    <Calendar 
+
+                    <a onClick={() => openModal("checkOut")}>Choose the date</a>
+                    <div>
+
+                    <CalendarContainer 
                       events={this.state.filteredEvents}
                       date = {this.state.date}
+                      
                     />
                 </div>
                     {/* <div className="dash-placehold">
@@ -352,7 +392,7 @@ class Dash extends React.Component {
                         </ul>
                     </div> */}
                   
-                
+            </div>
             </div>
         )
     }
