@@ -16,7 +16,8 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     res.json({
       id: req.user.id,
       handle: req.user.handle,
-      email: req.user.email
+      email: req.user.email,
+      history: req.user.history
     });
   })
 
@@ -61,7 +62,7 @@ router.post("/register", (req, res) => {
     });
   });
 
-  router.post("/login", (req, res) => {
+router.post("/login", (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
   
     if (!isValid) {
@@ -94,5 +95,14 @@ router.post("/register", (req, res) => {
       });
     });
   });
+
+  router.patch('/:id',
+    (req, res) => {
+      User.findById({user: req.user.id})
+        .then(user => res.json({
+          user: user
+        }))
+    }
+  )
 
 module.exports = router;

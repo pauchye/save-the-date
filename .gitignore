@@ -1,8 +1,8 @@
 /config/keys.js
 node_modules
-fontend/node_modules
+frontend/node_modules
 package-lock.json
-fontend/package-lock.json
+frontend/package-lock.json
 
-fontend/src/secrets.js
+frontend/src/secrets.js
 frontend/build

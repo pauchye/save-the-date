@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { openModal } from "../../actions/modal_actions";
 import { fetchEvents } from "../../actions/event_actions";
 import "../modal/modal.scss";
 
@@ -11,7 +12,7 @@ const mDTP = (dispatch) => {
   return null;
 };
 
-class ProfileDropDown extends React.Component {
+class CheckOut extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -28,7 +29,7 @@ class ProfileDropDown extends React.Component {
       <div className="modal-child-div">
         <div className="modal-child-div1">
           <ul>
-            <li>This is the drop down</li>
+            <li>This is the Checkout</li>
           </ul>
         </div>
 
@@ -40,4 +41,4 @@ class ProfileDropDown extends React.Component {
   }
 }
 
-export default connect(mSTP, mDTP)(ProfileDropDown);
+export default connect(mSTP, mDTP)(CheckOut);

@@ -2,7 +2,11 @@ import React from 'react';
 // import MapView from '../map/map';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import mapCSS from './_dash.css';
-import secrets from '../../secrets'
+import secrets from '../../secrets';
+import Calendar from '../calender/calender';
+import { openModal } from '../../actions/modal_actions';
+import LocationShow from './location_show';
+
 
 const {googleMapKey} = secrets;
 
@@ -227,6 +231,18 @@ class Dash extends React.Component {
         }
     }
 
+
+    // onClick(e){
+    //   e.preventDefault();
+    //   return (
+    //     <LocationShow
+    //       title={this.event.title}
+    //       description={this.event.description}
+    //     />
+    //   )
+    // }
+
+
     // placeMarker(location) {
     //     let marker = new google.maps.Marker({
     //         position: location, 
@@ -314,11 +330,28 @@ class Dash extends React.Component {
                         // console.log(bound)
                         // console.log('{event.lat, event.lng}', {lat, lng} )
                         // console.log('marker', markers[0] )
+                        // debugger;
+                        // <LocationShow
+                        //   title={event.title}
+                        // />
+                        
+                        // <LocationShow
+                        //   event={event}
+                        // />
+
                         return <Marker
+                        onClick={()=> this.props.openModal('locationShow')}
                         key={id}
-                        title={'Title 1'}
-                        name={'Name 1'}
-                        position={{lat, lng}} />
+                        title={event.title}
+                        // name={'Name 1'}
+                        position={{lat, lng}}
+                        className="Marker"
+                        />
+
+                        // return <InfoWindow content={event.title}
+                        //         visible={true} 
+                        //         position={{ lat, lng }}>
+                        //         </InfoWindow>
                     })}
 
                     
@@ -338,7 +371,13 @@ class Dash extends React.Component {
                     <div> 
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
-                    <div>Choose the date</div>
+
+                    <a onClick={() => openModal("checkOut")}>Choose the date</a>
+                    <div>
+                    <Calendar 
+                      events={this.state.filteredEvents}
+                    />
+                    </div>
                     <div className="dash-placehold">
                         <ul>
                           {this.state.filteredEvents.map((event, id)=>

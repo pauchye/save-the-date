@@ -2,6 +2,9 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import ProfileDropDown from '../user/profile_dropdown';
+import LocationShow from "../dash/location_show";
+import CheckOut from "../user/checkout_dropdown"
+
 import { logout } from '../../actions/session_actions';
 import './modal.scss'
 const mSTP = state => {
@@ -24,10 +27,19 @@ function Modal({modal, closeModal}){
 
     let component;
     switch (modal) {
-      case "profileDropDown":
+    case "profileDropDown":
         component = <ProfileDropDown closeModal={closeModal}/>;
         break;
-      default:
+
+    case "locationShow":
+        component = <LocationShow closeModal={closeModal}/>;
+        break;
+    
+    case "checkOut":
+        component = <CheckOut closeModal={closeModal}/>
+        break;
+
+    default:
         return null;
     }
 
