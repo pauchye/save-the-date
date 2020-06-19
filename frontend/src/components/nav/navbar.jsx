@@ -8,7 +8,8 @@ const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
     // debugger;
   const sessionLinks = () => (
     <div className="navbar">
-      <h1>Save the Date</h1>
+      {/* <h1 className="logo">Save the Date</h1> */}
+      <img className="logo" src={require(`./logo.png`)}></img>
       <div className="navbar-links">
         <Link to={"/signup"}>Signup</Link>
         <Link to={"/login"}>Login</Link>
@@ -17,13 +18,16 @@ const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
   );
 
   const greeting = () => (
-    <div>
-      <h1>Save the Date</h1>
-      <a className="l" onClick={() => {
+    <div className="navbar">
+      {/* <h1>Save the Date</h1> */}
+      <img className="logo" src={require(`./logo.png`)}></img>
+
+      <a className="user-modal" onClick={() => {
         fetchUser(currentUser.id)
         openModal("profileDropDown")
-    }}>
-        <span className="modal-buton">welcome {currentUser.handle}</span>
+        }}>
+        <img src={require('./calendar.png')} className="welcomeuser"/>
+        <span > {currentUser.handle}</span>
       </a>
     </div>
   );
