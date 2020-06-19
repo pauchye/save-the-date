@@ -10,22 +10,27 @@
 
 .modal-child{
     position: absolute;
-    top: 10%;
-    right: 50%;
+    top: 28%;
+    right: 20%;
     transform: translate(-50%, -50%);
     // background-color: lightsalmon;
 }
 
 .modal-child-div{
     position: absolute;
-    background-color: lightseagreen;
-    width: 200px;
-    height: 200px;
+    // background-color: lightseagreen;
+    width: 230px;
+    height: 300px;
 
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
+    padding: 20px;
     z-index: 1;
-    border: 1px solid grey;
+    // border: 1px solid grey;
+    border-radius: 20px;
+    background-color: rgb(165, 228, 249);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .dash-cont {
@@ -35,4 +40,9 @@
     z-index: 1;
     background-image: linear-gradient(rgb(247, 210, 247),rgb(243, 245, 246),rgb(243, 245, 246));
     padding-left: 4%;
+}
+
+.modal-ul{
+    list-style-type: none;
+    padding-left: 0;
 }

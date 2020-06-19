@@ -214,7 +214,7 @@ class Dash extends React.Component {
      }
 
     componentDidMount(){
-        this.props.fetchUsers();
+        // this.props.fetchUsers();
         
         const userId = this.props.currentUser.id;
         this.props.fetchUser(userId);

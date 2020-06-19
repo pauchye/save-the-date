@@ -3,7 +3,7 @@ import { logout } from '../../actions/session_actions';
 
 import NavBar from './navbar.jsx';
 import { openModal } from '../../actions/modal_actions';
-import { fetchUser, fetchUsers } from '../../actions/user_actions';
+import { fetchUser } from '../../actions/user_actions';
 
 const mapStateToProps = state => {
   // debugger;

@@ -72,13 +72,10 @@ class ProfileDropDown extends React.Component{
         return (
           <div className="modal-child-div">
             <div className="modal-child-div1">
-              <p>Your past dating schedual</p>
-              <ul>
-                <h1>{history[0]}</h1>
-                <ul>{allEvents}</ul>
-
-                <li>This is the drop down</li>
-              </ul>
+              <h2>Your past schedual</h2>
+              <h4>{history[0]}</h4>
+              <ul class="modal-ul">{allEvents}</ul>
+              
             </div>
 
             <div>
