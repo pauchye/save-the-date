@@ -343,7 +343,8 @@ class Dash extends React.Component {
                         // />
 
                         return <Marker
-                        onClick={()=> this.props.openModal('locationShow')}
+                        // onClick={()=> this.props.openModal('locationShow')}
+                        // onClick={() => Map.setCenter(40.7678805, -73.97103059999999)}
                         key={id}
                         title={event.title}
                         // name={'Name 1'}
@@ -376,7 +377,7 @@ class Dash extends React.Component {
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
 
-                    <a onClick={() => openModal("checkOut")}>Choose the date</a>
+                    <a onClick={() => openModal("checkOut")}></a>
                     <div>
 
                     <CalendarContainer 

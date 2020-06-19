@@ -11,8 +11,8 @@ const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
       {/* <h1 className="logo">Save the Date</h1> */}
       <img className="logo" src={require(`./logo.png`)}></img>
       <div className="navbar-links">
-        <Link to={"/signup"}>Signup</Link>
-        <Link to={"/login"}>Login</Link>
+        <Link className="login-demo-button" to={"/signup"}>Signup</Link>
+        <Link className="login-demo-button" to={"/login"}>Login</Link>
       </div>
     </div>
   );

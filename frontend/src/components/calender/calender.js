@@ -120,11 +120,9 @@ class Calender extends React.Component {
               <h4>TIME</h4>
               <div
                 className="drag-this"
-                draggable="true"
-                onDragStart={this.drag}
               >
-                <h4>MOVIE EVENT</h4>
-                <h6>MOVIE EVENT DESCRIPTION</h6>
+                <h4>EVENT</h4>
+                <h6>DETAILS</h6>
               </div>
             </div>
 
@@ -198,7 +196,7 @@ class Calender extends React.Component {
             onDrop={this.drop}
             onDragOver={this.allowDrop}
           >
-            <h3>Results go here</h3>
+            <h3>Events at This Location</h3>
 
             {this.props.events.map((event, id) => {
               {

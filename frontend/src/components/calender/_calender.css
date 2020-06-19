@@ -2,15 +2,16 @@
     display: flex;
     background-color: rgb(165, 228, 249);
     border-radius: 20px;
+    /* margin-right: 10%; */
 }
 
 .calender{
     display: flex;
     flex-direction: column;
     border: 5px solid rgb(247, 210, 247);
-    width: 30%;
-    min-width: 250px;
+    /* width: 30%; */
     margin: 3%;
+    min-width: 55%;
 }
 
 .calender div{
@@ -39,8 +40,8 @@ h3{
 .results{
     display: flex;
     flex-direction: column;
-    width: 50%;
-    min-width: 350px;
+    /* width: 50%; */
+    min-width: 40%;
     border: 10px solid rgb(247, 210, 247);
     margin: 5%;
 }
