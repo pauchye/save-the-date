@@ -63,7 +63,7 @@ class ProfileDropDown extends React.Component{
         if (event){
         return (
         <li>
-        {idx+9} : {event.title}
+        {idx+9}:00 - {event.title}
 
         </li>
         )}
@@ -72,7 +72,7 @@ class ProfileDropDown extends React.Component{
         return (
           <div className="modal-child-div">
             <div className="modal-child-div1">
-              <h2>Your past schedual</h2>
+              <h2>Your past schedule</h2>
               <h4>{history[0]}</h4>
               <ul class="modal-ul">{allEvents}</ul>
               

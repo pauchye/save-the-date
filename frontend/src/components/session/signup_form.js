@@ -63,6 +63,7 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit}>
+      {this.renderErrors()}
           <img className="phone" src={require(`./phone1.png`)}></img>
           <div className="signup-form">
             <br/>
@@ -91,7 +92,6 @@ class SignupForm extends React.Component {
               />
             <br/>
             <input className="join" type="submit" value="JOIN" />
-            {this.renderErrors()}
           </div>
         </form>
       </div>

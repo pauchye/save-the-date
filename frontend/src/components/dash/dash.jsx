@@ -301,6 +301,7 @@ class Dash extends React.Component {
         
         // if(!dinings) return null;
         // debugger
+
         return (
             <div className = "dash-body">
                 <div className = "dash-cont">
@@ -343,12 +344,13 @@ class Dash extends React.Component {
                         // />
 
                         return <Marker
-                        onClick={()=> this.props.openModal('locationShow')}
+                        // onClick={()=> this.props.openModal('locationShow')}
                         key={id}
                         title={event.title}
                         // name={'Name 1'}
                         position={{lat, lng}}
                         className="Marker"
+                        onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
                         />
 
                         // return <InfoWindow content={event.title}
@@ -376,7 +378,7 @@ class Dash extends React.Component {
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
 
-                    <a onClick={() => openModal("checkOut")}>Choose the date</a>
+                    <a onClick={() => openModal("checkOut")}></a>
                     <div>
 
                     <CalendarContainer 

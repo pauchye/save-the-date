@@ -4,7 +4,7 @@
 
 .dash-cont {
     height: 100%;
-    width: 50%;
+    width: 50%!important;
     /* position: absolute; */
     z-index: 1;
     background-image: linear-gradient(rgb(247, 210, 247),rgb(243, 245, 246),rgb(243, 245, 246));
@@ -22,17 +22,18 @@
   } */
   .dash-right {
       /* background-color: burlywood; */
-      width: 55%;
+      width: 50%;
       /* border: 2px solid red; */
-      height: 600px;
+      /* height: 600px; */
       border-radius: 20px;
-      padding-right: 4%;
+      /* padding-right: 4%; */
       /* background-color: cornflowerblue; */
       z-index: 2;
       /* display: flex;
       flex-direction: column;
       align-items: center; */
       /* justify-content: center; */
+      margin-right: 5%;
   }
   .dash-cal {
     /* margin-top: 40px; */
@@ -54,14 +55,14 @@
     display: flex;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .dash-body {
       display: block;
       margin-right: 5px;
       margin-left: 5px;
      
-  }
-  .dash-right {
+  } */
+  /* .dash-right {
     position: relative;
     top: 600px;
   }
@@ -69,4 +70,4 @@
   .dash-cont Map {
     width: 90%;
   }
-}
+} */

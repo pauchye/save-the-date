@@ -52,8 +52,8 @@ class LoginForm extends React.Component {
     e.preventDefault();
     this.setState(
       {
-        email: "Demo@test.com",
-        password: "123456",
+        email: "visitor@example.com",
+        password: "password",
       },
       () => this.props.login(Object.assign({}, this.state))
     );
@@ -74,6 +74,12 @@ class LoginForm extends React.Component {
     return (
       <div className="login-form-container">
         <form className="" onSubmit={this.handleSubmit}>
+          <div>
+            <button className='login-demo-button' onClick={this.handleClick}>
+              Demo Login
+            </button>
+          </div>
+            {this.renderErrors()}
           <img className="phone" src={require(`./phone2.png`)}></img>
           <div className="login-form">
             <input
@@ -93,14 +99,8 @@ class LoginForm extends React.Component {
             />
             <br />
             <input className="login-btn" type="submit" value="LOG IN" />
-            {this.renderErrors()}
           </div>
 
-          <div>
-            <button className='login-demo-button' onClick={this.handleClick}>
-              Demo Login
-            </button>
-          </div>
 
           <br />
         </form>
