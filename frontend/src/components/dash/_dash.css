@@ -71,3 +71,29 @@
     width: 90%;
   }
 } */
+
+/* InfoWindow */
+.gm-style .gm-style-iw-c {
+  font-family: Arial;
+  background: linear-gradient(#f7d2f7, #a5e3fa);
+  border-radius: 10px;
+  text-align: center;
+  padding-right: 10px!important;
+  opacity: 0.9;
+  border: 1px solid black;
+  box-shadow: -7px 7px 1px rgba(0,0,0,0.3);
+}
+
+.gm-style-iw-d {
+  overflow: hidden!important;
+}
+
+.gm-style-iw-d h1 {
+  font-size: 17px;
+  text-shadow: -1px 1px 2px grey;
+  -webkit-text-stroke: .3px white;
+}
+
+.gm-style-iw-t {
+  bottom: 0px;
+}
