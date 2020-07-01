@@ -3,15 +3,9 @@ $blue: rgb(165, 228, 249);
 $white: rgb(243, 245, 246);
 $pure-wht: rgb(255, 255, 255);
 
-// .app {
-//   background: linear-gradient(150deg, $pure-wht, $pink, $blue, $pure-wht);
-//   font-family: 'happy_brown_cat_shadow';
-//   height: 100%;
-// }
-
 html {
   height: 100%;
-  background: linear-gradient(150deg, $pure-wht, $pink, $blue, $pure-wht) fixed;  // adding fixed makes the gradient take up the full screen
+  background: linear-gradient(150deg, $pure-wht, $pink, $blue, $pure-wht) fixed;
   font-family: 'happy_brown_cat_shadow';
   background-size: cover;
 }

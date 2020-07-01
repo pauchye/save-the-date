@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { openModal } from "../../actions/modal_actions";
-import { fetchEvents } from "../../actions/event_actions";
+// import { openModal } from "../../actions/modal_actions";
+// import { fetchEvents } from "../../actions/event_actions";
 import "../modal/modal.scss";
 
 const mSTP = (state) => {
@@ -24,7 +24,6 @@ class CheckOut extends React.Component {
   }
 
   render() {
-    // const { events } = this.props;
     return (
       <div className="modal-child-div">
         <div className="modal-child-div1">

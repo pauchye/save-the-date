@@ -27,7 +27,8 @@
     "webpack": "4.42.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "ws": "3.3.2"
   },
   "scripts": {
     "start": "node app.js",

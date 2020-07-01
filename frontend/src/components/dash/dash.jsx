@@ -1,15 +1,14 @@
 import React from 'react';
-// import MapView from '../map/map';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import mapCSS from './_dash.css';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import './_dash.css';
 import secrets from '../../secrets';
 import CalendarContainer from '../calender/calender_container';
-import { openModal } from '../../actions/modal_actions';
-import LocationShow from './location_show';
+// import { openModal } from '../../actions/modal_actions';
+// import LocationShow from './location_show';
 
 const {googleMapKey} = secrets;
 
-const markers = [ {lat: 40.8678805, lng: -73.87103059999999}, {lat: 40.05, lng: -73.9999999}, {lat: 40.7678805, lng: -73.97103059999999}]
+// const markers = [ {lat: 40.8678805, lng: -73.87103059999999}, {lat: 40.05, lng: -73.9999999}, {lat: 40.7678805, lng: -73.97103059999999}]
 
 const jsonStyle = [
     {
@@ -194,14 +193,9 @@ const jsonStyle = [
 class Dash extends React.Component {
     constructor(props) {
       super(props);
-      // debugger;
-    //   this.props.fetchEvents();
       this.state = {date: '',
       filteredEvents: this.props.events
     };
-
-    //   this.state.filteredDinings = this.props.dinings;
-        // debugger
       this.handleChange = this.handleChange.bind(this)
       this.filterListings = this.filterListings.bind(this)
       this.onReady = this.onReady.bind(this)
@@ -213,18 +207,13 @@ class Dash extends React.Component {
         zoom: 13
      }
 
-    componentDidMount(){
-        // this.props.fetchUsers();
-        
-        const userId = this.props.currentUser.id;
-        this.props.fetchUser(userId);
+    componentDidMount(){        
+        // const userId = this.props.currentUser.id;
+        // this.props.fetchUser(userId);
         
         this.props.fetchEvents().then(
             () => this.setState({filteredEvents: this.props.events[0]})
         );
-        // this.props.fetchDinings();
-        // this.setState({filteredEvents: this.props.events[0]})
-        // debugger
     }
 
 
@@ -234,45 +223,12 @@ class Dash extends React.Component {
         }
     }
 
-
-    // onClick(e){
-    //   e.preventDefault();
-    //   return (
-    //     <LocationShow
-    //       title={this.event.title}
-    //       description={this.event.description}
-    //     />
-    //   )
-    // }
-
-
-    // placeMarker(location) {
-    //     let marker = new google.maps.Marker({
-    //         position: location, 
-    //         map: this.map
-    //     });
-       //  debugger
-       //  console.log(marker)
-//    }
-
-//    componentDidMount(){
-//     {markers.forEach((marker)=>{
-//         return <Marker
-//         title={'Title 1'}
-//         name={'Name 1'}
-//         position={marker} />
-//     })
-//    }
     filterListings(mapProps, map) {
         this.map = map;
         let NElat = this.map.getBounds().getNorthEast().lat();
         let NElng = this.map.getBounds().getNorthEast().lng();
         let SWlat = this.map.getBounds().getSouthWest().lat();
         let SWlng = this.map.getBounds().getSouthWest().lng();
-        // console.log('NE lat', NElat)
-        // console.log('NE lng', NElng)
-        // console.log('SW lat', SWlat)
-        // console.log('SW lng', SWlng)
         console.log('this.props.events[0]', this.props.events[0])
         console.log('this.state', this.state)
         let filteredEvents = this.props.events[0].filter(event => {
@@ -288,32 +244,23 @@ class Dash extends React.Component {
     onReady(props, map) {
         this.map = map;
         console.log('onReady map:', this.map.getBounds())
-        // debugger;
     }
 
 
     render() {
 
-        const events = this.props.events[0];
-        // const dinings = this.props.dinings[0];
-        
+        const events = this.props.events[0];        
         if(!events) return null;
-        
-        // if(!dinings) return null;
-        // debugger
 
         return (
             <div className = "dash-body">
                 <div className = "dash-cont">
-                    {/* <MapView /> */}
                     <Map 
                 styles = {jsonStyle}    
-                // options={mapOptions}    
                 style={{width: '40%', 
                 height: '85%', 
                 position: 'relative',
                 borderRadius: "20px",
-                // paddingLeft: "20px"
             }}
                 google={this.props.google} 
                 zoom={14} 
@@ -326,51 +273,18 @@ class Dash extends React.Component {
                   onDragend = {this.filterListings}
                 > 
                     {events.map((event, id)=>{
-                        // console.log('event', event)
                         let lat = event.lat;
                         let lng = event.lng;
-                        // const bound = this.map.getBounds();
-
-                        // console.log(bound)
-                        // console.log('{event.lat, event.lng}', {lat, lng} )
-                        // console.log('marker', markers[0] )
-                        // debugger;
-                        // <LocationShow
-                        //   title={event.title}
-                        // />
-                        
-                        // <LocationShow
-                        //   event={event}
-                        // />
 
                         return <Marker
-                        // onClick={()=> this.props.openModal('locationShow')}
                         key={id}
                         title={event.title}
-                        // name={'Name 1'}
                         position={{lat, lng}}
                         className="Marker"
                         onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
                         />
-
-                        // return <InfoWindow content={event.title}
-                        //         visible={true} 
-                        //         position={{ lat, lng }}>
-                        //         </InfoWindow>
                     })}
 
-
-                    
-                    
- 
-                    {/* <Marker onClick={this.onMarkerClick}
-                            name={'Current location'} /> */}
-            
-                    {/* <InfoWindow onClose={this.onInfoWindowClose}>
-                        <div>
-                        <h1>{this.state.selectedPlace.name}</h1>
-                        </div>
-                    </InfoWindow> */}
                 </Map>
                 </div>
                 <div className="dash-right" >
@@ -378,7 +292,7 @@ class Dash extends React.Component {
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
 
-                    <a onClick={() => openModal("checkOut")}></a>
+                    {/* <a onClick={() => openModal("checkOut")}></a> */}
                     <div>
 
                     <CalendarContainer 
@@ -386,14 +300,7 @@ class Dash extends React.Component {
                       date = {this.state.date}
                       
                     />
-                </div>
-                    {/* <div className="dash-placehold">
-                        <ul>
-                          {this.state.filteredEvents.map((event, id)=>
-                           {return (<li key={id}>{event.title}</li>)})}
-                        </ul>
-                    </div> */}
-                  
+                </div>                
             </div>
             </div>
         )
@@ -404,4 +311,3 @@ class Dash extends React.Component {
 export default GoogleApiWrapper({
     apiKey: googleMapKey
   })(Dash)
-// export default Dash;

@@ -4,7 +4,6 @@ import calenderCSS from "./_calender.css";
 class Calender extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
     this.state = {
       9: "",
       10: "",
@@ -23,7 +22,6 @@ class Calender extends React.Component {
       23: "",
       24: "",
     };
-    // this.currentUser = this.props.currentUser;
     this.selected = "";
     this.allEvents = {};
     this.drag = this.drag.bind(this);
@@ -34,10 +32,7 @@ class Calender extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // console.log(this.props.currentUser);
-    // debugger;
     const date = this.props.date;
-    // const schedule = "test";
     const schedule = Object.values(this.state).slice(0, 16);
 
     this.props.currentUser.history.push([date, schedule]);
@@ -45,23 +40,17 @@ class Calender extends React.Component {
     console.log(this.props.currentUser.history);
     const modifiedUser = this.props.currentUser;
 
-    // this.props.updateUser(modifiedUser)
     this.props.updateUser(modifiedUser);
     this.props.fetchUser(this.props.currentUser.id);
   }
 
   drag(e) {
-    // debugger
     e.dataTransfer.setData("text", e.target.className);
     let data = e.dataTransfer.getData("text");
     this.selected = e.target.className;
-    // debugger
-    // this.allEvents[this.selected] = {};
     this.setState({
       [e.target.className]: document.getElementsByClassName(data)[0],
     });
-    // debugger
-    // e.target.appendChild(document.getElementsByClassName(data)[0]);
   }
 
   allowDrop(e) {
@@ -70,12 +59,9 @@ class Calender extends React.Component {
 
   drop(e) {
     e.preventDefault();
-    // debugger
     let data = e.dataTransfer.getData("text");
-    // debugger
     let thisNode = document.getElementsByClassName(data)[0];
     let copiedNode = thisNode.cloneNode(true);
-    // e.target.appendChild(document.getElementsByClassName(data)[0]);
     e.target.appendChild(copiedNode);
 
     console.log("this.allEvents 1", this.allEvents);
@@ -87,14 +73,11 @@ class Calender extends React.Component {
   }
 
   render() {
-    // debugger;
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="calender-results-page">
             <div className="calender">
-              <div>{/* <h3>{this.props.date}</h3> */}</div>
               <div className="8" onDrop={this.drop} onDragOver={this.allowDrop}>
                 <h4>TIME</h4>
                 <div
@@ -247,7 +230,6 @@ class Calender extends React.Component {
                   <div
                     key={id}
                     draggable="true"
-                    //    id={id}
                     className={event.title}
                     onDragStart={this.drag}
                   >
@@ -256,8 +238,6 @@ class Calender extends React.Component {
                   </div>
                 );
               })}
-
-              {/* <h4>DINING EVENT</h4> */}
             </div>
           </div>
 

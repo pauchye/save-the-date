@@ -2,12 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { fetchEvents } from '../../actions/event_actions';
-// import { Link } from 'react-router-dom';
 import "../modal/modal.scss"
-// import "./modal.scss";
 
 const mSTP = state => {
-  // debugger
     if (!state.session.user) return null;
 
     return {
@@ -28,45 +25,39 @@ class ProfileDropDown extends React.Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
-    // componentDidMount(){
-    //     this.props.fetchEvents();
-    // }
 
     handleClick(e){
       e.preventDefault();
-      // this.props.logout().then(this.props.closeModal)
       this.props.logout();
       this.props.closeModal();
     }
 
     render(){
 
-      
       if (!this.props.history)
       return (
         <div className="modal-child-div">
-            <div className="modal-child-div1">
-              <p>You don't have a schedule yet</p>
-            </div>
-
-            <div>
-              <button onClick={this.handleClick} className="dash-cal">
-                Logout
-              </button>
-            </div>
+          <div className="modal-child-div1">
+            <p>You don't have a schedule yet</p>
           </div>
-        );
+
+          <div>
+            <button onClick={this.handleClick} className="dash-cal">
+              Logout
+            </button>
+          </div>
+        </div>
+      );
         
       const history = this.props.history[this.props.history.length-1];
+      // eslint-disable-next-line
       const allEvents = history[1].map((event,idx) => {
-        // debugger;
-        if (event){
+        if (event)
         return (
-        <li>
-        {idx+9}:00 - {event.title}
-
-        </li>
-        )}
+          <li key={idx}>
+            {idx+9}:00 - {event.title}
+          </li>
+        )
       });
 
         return (
@@ -74,7 +65,7 @@ class ProfileDropDown extends React.Component{
             <div className="modal-child-div1">
               <h2>Your past schedule</h2>
               <h4>{history[0]}</h4>
-              <ul class="modal-ul">{allEvents}</ul>
+              <ul className="modal-ul">{allEvents}</ul>
               
             </div>
 
