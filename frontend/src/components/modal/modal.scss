@@ -13,19 +13,16 @@
     top: 28%;
     right: 20%;
     transform: translate(-50%, -50%);
-    // background-color: lightsalmon;
 }
 
 .modal-child-div{
     position: absolute;
-    // background-color: lightseagreen;
     width: 230px;
     height: 300px;
 
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 20px;
     z-index: 1;
-    // border: 1px solid grey;
     border-radius: 20px;
     background-color: rgb(165, 228, 249);
     display: flex;

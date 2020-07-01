@@ -1,6 +1,6 @@
 import React from 'react';
 
-import mainCSS from "./_main.css"
+import "./_main.css"
 
 
 class MainPage extends React.Component {
@@ -37,13 +37,13 @@ class MainPage extends React.Component {
       <div className="main">
         <div className="main-slideshow">
           <div className="slides">
-            <img src={require(`./img1.jpg`)}></img>
+            <img src={require(`./img1.jpg`)} alt="" ></img>
           </div>
           <div className="slides">
-            <img src={require(`./img2.jpg`)}></img>
+            <img src={require(`./img2.jpg`)} alt=""></img>
           </div>
           <div className="slides">
-            <img src={require(`./img3.jpg`)}></img>
+            <img src={require(`./img3.jpg`)} alt=""></img>
           </div>
         </div>
 

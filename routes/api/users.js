@@ -2,16 +2,12 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
-//import webtoken
 const jwt = require('jsonwebtoken');
-//importing keys
 const keys = require('../../config/secrets');
 const passport = require('passport');
-//import validations
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-// private auth route 
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
     res.json({
       id: req.user.id,
@@ -100,11 +96,8 @@ router.post("/login", (req, res) => {
 
 
   router.patch("/:id", (req, res) => {
-    // debugger;
-    // User.findById(req.params.id).update({ history: req.body.history })
     User.findById(req.params.id)
       .update({ $push: { history: req.body.history } })
-      // .update({ history: req.body.history })
       .then((result) => {
         res.json(result);
       });
