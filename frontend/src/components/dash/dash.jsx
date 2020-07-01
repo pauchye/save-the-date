@@ -206,6 +206,7 @@ class Dash extends React.Component {
       this.filterListings = this.filterListings.bind(this)
       this.onReady = this.onReady.bind(this)
       
+      // this.handleClick = this.handleClick.bind(this)
     }
 
     static defaultProps = {
@@ -234,45 +235,12 @@ class Dash extends React.Component {
         }
     }
 
-
-    // onClick(e){
-    //   e.preventDefault();
-    //   return (
-    //     <LocationShow
-    //       title={this.event.title}
-    //       description={this.event.description}
-    //     />
-    //   )
-    // }
-
-
-    // placeMarker(location) {
-    //     let marker = new google.maps.Marker({
-    //         position: location, 
-    //         map: this.map
-    //     });
-       //  debugger
-       //  console.log(marker)
-//    }
-
-//    componentDidMount(){
-//     {markers.forEach((marker)=>{
-//         return <Marker
-//         title={'Title 1'}
-//         name={'Name 1'}
-//         position={marker} />
-//     })
-//    }
     filterListings(mapProps, map) {
         this.map = map;
         let NElat = this.map.getBounds().getNorthEast().lat();
         let NElng = this.map.getBounds().getNorthEast().lng();
         let SWlat = this.map.getBounds().getSouthWest().lat();
         let SWlng = this.map.getBounds().getSouthWest().lng();
-        // console.log('NE lat', NElat)
-        // console.log('NE lng', NElng)
-        // console.log('SW lat', SWlat)
-        // console.log('SW lng', SWlng)
         console.log('this.props.events[0]', this.props.events[0])
         console.log('this.state', this.state)
         let filteredEvents = this.props.events[0].filter(event => {
@@ -288,8 +256,11 @@ class Dash extends React.Component {
     onReady(props, map) {
         this.map = map;
         console.log('onReady map:', this.map.getBounds())
-        // debugger;
     }
+
+    // handleClick() {
+    //   const info = google
+    // }
 
 
     render() {
@@ -301,6 +272,8 @@ class Dash extends React.Component {
         
         // if(!dinings) return null;
         // debugger
+
+        
 
         return (
             <div className = "dash-body">
@@ -326,31 +299,17 @@ class Dash extends React.Component {
                   onDragend = {this.filterListings}
                 > 
                     {events.map((event, id)=>{
-                        // console.log('event', event)
                         let lat = event.lat;
                         let lng = event.lng;
-                        // const bound = this.map.getBounds();
-
-                        // console.log(bound)
-                        // console.log('{event.lat, event.lng}', {lat, lng} )
-                        // console.log('marker', markers[0] )
-                        // debugger;
-                        // <LocationShow
-                        //   title={event.title}
-                        // />
-                        
-                        // <LocationShow
-                        //   event={event}
-                        // />
+                      
 
                         return <Marker
-                        // onClick={()=> this.props.openModal('locationShow')}
                         key={id}
                         title={event.title}
-                        // name={'Name 1'}
                         position={{lat, lng}}
                         className="Marker"
-                        onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
+                        // onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
+                        onClick={this.handleClick} 
                         />
 
                         // return <InfoWindow content={event.title}
