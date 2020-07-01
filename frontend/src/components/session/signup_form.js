@@ -23,7 +23,7 @@ class SignupForm extends React.Component {
     if (nextProps.signedIn === true) {
       this.props.history.push('/dash'); 
     }
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({errors: nextProps.errors});
   }
 

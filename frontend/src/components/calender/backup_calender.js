@@ -34,10 +34,9 @@ class Calender extends React.Component {
     e.preventDefault();
     const date = this.props.date;
     const schedule = Object.values(this.state).slice(0, 16);
-
+    // debugger;
     this.props.currentUser.history.push([date, schedule]);
-
-    console.log(this.props.currentUser.history);
+    // console.log(this.props.currentUser.history);
     const modifiedUser = this.props.currentUser;
 
     this.props.updateUser(modifiedUser);
@@ -64,12 +63,12 @@ class Calender extends React.Component {
     let copiedNode = thisNode.cloneNode(true);
     e.target.appendChild(copiedNode);
 
-    console.log("this.allEvents 1", this.allEvents);
-    console.log("this.state 1", this.state);
+    // console.log("this.allEvents 1", this.allEvents);
+    // console.log("this.state 1", this.state);
     this.setState({ [e.target.className]: this.allEvents[this.selected] });
-    console.log("this.allEvents 2", this.allEvents);
+    // console.log("this.allEvents 2", this.allEvents);
 
-    console.log("this.state 2", this.state);
+    // console.log("this.state 2", this.state);
   }
 
   render() {

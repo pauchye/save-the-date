@@ -40,10 +40,12 @@ class Calender extends React.Component {
     e.preventDefault();
     const date = this.props.date;
     const schedule = Object.values(this.state).slice(0, 16);
-
+    if (!this.props.currentUser.history){
+      this.props.currentUser.history = []
+    }
+    // debugger
     this.props.currentUser.history.push([date, schedule]);
-
-    console.log(this.props.currentUser.history);
+    // console.log(this.props.currentUser.history);
     const modifiedUser = this.props.currentUser;
 
     this.props.updateUser(modifiedUser);
@@ -69,16 +71,31 @@ class Calender extends React.Component {
     e.dataTransfer.setData("text/plain", e.target.className);
     let data = e.dataTransfer.getData("text/plain");
     let thisNode = document.getElementsByClassName(data)[0];
-    if (thisNode) {
-      let copiedNode = thisNode.cloneNode(true);
-      e.target.appendChild(copiedNode);
-      console.log("this.allEvents 1", this.allEvents);
-      console.log("this.state 1", this.state);
-      this.setState({ [e.target.className]: this.allEvents[this.selected] });
-      console.log("this.allEvents 2", this.allEvents);
 
-      console.log("this.state 2", this.state);
+    if (this.validCheck()){
+
+      if (thisNode) {
+        let copiedNode = thisNode.cloneNode(true);
+        // debugger;
+        if (e.target.childElementCount === 1)
+        e.target.appendChild(copiedNode);
+        this.setState({ [e.target.className]: this.allEvents[this.selected] });
+      }
     }
+    
+  }
+
+  validCheck(){
+    const schedule = Object.values(this.state).slice(0, 16).filter(event => event !== "");
+    const count = {};
+    schedule.forEach((event) =>{
+      if(!count[event.title]) count[event.title] = 0;
+      count[event.title] += 1;
+    });
+    const boo = Object.values(count).every(count => count < 2)
+    console.log(boo);
+    console.log(count);
+    return boo
   }
 
   render() {

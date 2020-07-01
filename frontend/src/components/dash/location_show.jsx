@@ -7,8 +7,7 @@ import "../modal/modal.scss"
 // import { fetchEvent } from '../../actions/event_actions';
 
 const mSTP = state => {
-    return {
-        
+    return { 
     }
 }
 

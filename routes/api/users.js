@@ -93,11 +93,11 @@ router.post("/login", (req, res) => {
   });
 
 
-
-
   router.patch("/:id", (req, res) => {
     User.findById(req.params.id)
-      .update({ $push: { history: req.body.history } })
+      .update({
+        history: req.body.history
+      })
       .then((result) => {
         res.json(result);
       });
