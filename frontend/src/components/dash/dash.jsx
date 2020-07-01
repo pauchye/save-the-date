@@ -301,6 +301,7 @@ class Dash extends React.Component {
         
         // if(!dinings) return null;
         // debugger
+
         return (
             <div className = "dash-body">
                 <div className = "dash-cont">
@@ -344,12 +345,12 @@ class Dash extends React.Component {
 
                         return <Marker
                         // onClick={()=> this.props.openModal('locationShow')}
-                        // onClick={() => Map.setCenter(40.7678805, -73.97103059999999)}
                         key={id}
                         title={event.title}
                         // name={'Name 1'}
                         position={{lat, lng}}
                         className="Marker"
+                        onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
                         />
 
                         // return <InfoWindow content={event.title}
