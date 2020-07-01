@@ -308,8 +308,8 @@ class Dash extends React.Component {
                         title={event.title}
                         position={{lat, lng}}
                         className="Marker"
-                        // onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
-                        onClick={this.handleClick} 
+                        onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
+                        // onClick={this.handleClick} 
                         />
 
                         // return <InfoWindow content={event.title}
