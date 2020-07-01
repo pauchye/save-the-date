@@ -10,6 +10,7 @@ import SignupFormContainer from './session/signup_form_container';
 import CalenderContainer from './calender/calender_container';
 import DashContainer from './dash/dash_container';
 import Modal from './modal/modal'
+// import Profile from './user/profile'
 
 import './app.scss'
 
@@ -23,6 +24,7 @@ const App = () => (
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path="/calender" component={CalenderContainer} />
+        {/* <AuthRoute exact path="/dash/profile" component={Profile} /> */}
     </Switch>
   </div>
 );

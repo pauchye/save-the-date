@@ -2,6 +2,7 @@ import * as UserUtil from '../util/users_util';
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
+// export const RECEIVE_CURRENT_USER_TEST = "RECEIVE_CURRENT_USER_TEST";
 
 
 const receiveUser = (user) => ({

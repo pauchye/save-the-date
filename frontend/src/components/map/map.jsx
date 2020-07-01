@@ -15,7 +15,7 @@ export class MapView extends React.Component {
 
 
     render() {
-        console.log('google.maps', this.props.google.maps.LatLngBounds )
+        // console.log('google.maps', this.props.google.maps.LatLngBounds )
         return(
 
                 <Map 

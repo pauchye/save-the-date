@@ -19,6 +19,7 @@ const mDTP = dispatch => {
     }
 }
 
+
 class ProfileDropDown extends React.Component{
     constructor(props) {
         super(props);
@@ -33,7 +34,7 @@ class ProfileDropDown extends React.Component{
     }
 
     render(){
-
+      
       if (!this.props.history)
       return (
         <div className="modal-child-div">

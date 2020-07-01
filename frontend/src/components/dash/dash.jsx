@@ -207,14 +207,17 @@ class Dash extends React.Component {
         zoom: 13
      }
 
-    componentDidMount(){        
-        // const userId = this.props.currentUser.id;
-        // this.props.fetchUser(userId);
-        
-        this.props.fetchEvents().then(
-            () => this.setState({filteredEvents: this.props.events[0]})
-        );
+    componentDidMount(){
+      const userId = this.props.currentUser.id;
+      this.props.updateUser(userId);
+
+      // debugger        
+      this.props.fetchEvents().then(
+          () => this.setState({filteredEvents: this.props.events[0]})
+      );
+
     }
+
 
 
     handleChange(input){
@@ -224,26 +227,26 @@ class Dash extends React.Component {
     }
 
     filterListings(mapProps, map) {
-        this.map = map;
-        let NElat = this.map.getBounds().getNorthEast().lat();
-        let NElng = this.map.getBounds().getNorthEast().lng();
-        let SWlat = this.map.getBounds().getSouthWest().lat();
-        let SWlng = this.map.getBounds().getSouthWest().lng();
-        console.log('this.props.events[0]', this.props.events[0])
-        console.log('this.state', this.state)
-        let filteredEvents = this.props.events[0].filter(event => {
-            return(
-                (event.lat < NElat && event.lat > SWlat)&&(event.lng < NElng && event.lng > SWlng)
-            )
-        })
-        this.setState({filteredEvents: filteredEvents})
-        console.log('this.state', this.state)
+      this.map = map;
+      let NElat = this.map.getBounds().getNorthEast().lat();
+      let NElng = this.map.getBounds().getNorthEast().lng();
+      let SWlat = this.map.getBounds().getSouthWest().lat();
+      let SWlng = this.map.getBounds().getSouthWest().lng();
+      // console.log('this.props.events[0]', this.props.events[0])
+      // console.log('this.state', this.state)
+      let filteredEvents = this.props.events[0].filter(event => {
+        return(
+            (event.lat < NElat && event.lat > SWlat)&&(event.lng < NElng && event.lng > SWlng)
+        )
+      })
+      this.setState({filteredEvents: filteredEvents})
+      // console.log('this.state', this.state)
 
     }
 
     onReady(props, map) {
         this.map = map;
-        console.log('onReady map:', this.map.getBounds())
+        // console.log('onReady map:', this.map.getBounds())
     }
 
 
@@ -253,15 +256,15 @@ class Dash extends React.Component {
         if(!events) return null;
 
         return (
-            <div className = "dash-body">
-                <div className = "dash-cont">
-                    <Map 
+          <div className = "dash-body">
+            <div className = "dash-cont">
+              <Map 
                 styles = {jsonStyle}    
                 style={{width: '40%', 
                 height: '85%', 
                 position: 'relative',
                 borderRadius: "20px",
-            }}
+                }}
                 google={this.props.google} 
                 zoom={14} 
                 initialCenter={{
@@ -271,22 +274,24 @@ class Dash extends React.Component {
                   onReady= {this.onReady}
                   onZoomChanged = {this.filterListings}
                   onDragend = {this.filterListings}
-                > 
-                    {events.map((event, id)=>{
-                        let lat = event.lat;
-                        let lng = event.lng;
+              > 
+                {
+                  events.map((event, id)=>{
+                    let lat = event.lat;
+                    let lng = event.lng;
 
-                        return <Marker
-                        key={id}
-                        title={event.title}
-                        position={{lat, lng}}
-                        className="Marker"
-                        onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
-                        />
-                    })}
+                    return <Marker
+                      key={id}
+                      title={event.title}
+                      position={{lat, lng}}
+                      className="Marker"
+                      onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
+                    />
+                  })
+                }
 
-                </Map>
-                </div>
+              </Map>
+            </div>
                 <div className="dash-right" >
                     <div> 
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
@@ -298,16 +303,15 @@ class Dash extends React.Component {
                     <CalendarContainer 
                       events={this.state.filteredEvents}
                       date = {this.state.date}
-                      
                     />
                 </div>                
             </div>
-            </div>
+          </div>
         )
     }
 
 }
 
 export default GoogleApiWrapper({
-    apiKey: googleMapKey
-  })(Dash)
+  apiKey: googleMapKey
+})(Dash)
