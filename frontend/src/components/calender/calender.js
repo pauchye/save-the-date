@@ -53,7 +53,6 @@ class Calender extends React.Component {
   }
 
   drag(e) {
-
     e.dataTransfer.setData("text/plain", e.target.className);
     let data = e.dataTransfer.getData("text/plain");
     this.selected = e.target.className;
@@ -73,7 +72,6 @@ class Calender extends React.Component {
     let thisNode = document.getElementsByClassName(data)[0];
 
     if (this.validCheck()){
-
       if (thisNode) {
         let copiedNode = thisNode.cloneNode(true);
         // debugger;
