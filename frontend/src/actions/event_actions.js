@@ -1,4 +1,4 @@
-import { getEvent, getEvents } from "../util/events_util";
+import { getEvent, getEvents, updateEvent } from "../util/events_util";
 
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
@@ -21,4 +21,9 @@ export const fetchEvents = () => dispatch => (
 export const fetchEvent = eventId => dispatch => (
     getEvent(eventId)
         .then(event => dispatch(receiveEvent(event)))
+)
+
+export const updatethisEvent = event => dispatch => (
+  updateEvent(event)
+    .then(event => dispatch(receiveEvent(event)))
 )

@@ -15,7 +15,9 @@ const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
 
   const greeting = () => (
     <div className="navbar">
-      <img className="logo" src={require(`./logo.png`)} alt=""/>
+      <a href="#/dash">
+        <img className="logo" src={require(`./logo.png`)} alt=""/>
+      </a>
       <div className="user-modal" onClick={() =>
         openModal("profileDropDown")
         }
