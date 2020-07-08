@@ -35,7 +35,7 @@ class ProfileDropDown extends React.Component{
 
     render(){
       
-      if (!this.props.history)
+      if (!this.props.history || this.props.history.length < 1 ){
       return (
         <div className="modal-child-div">
           <div className="modal-child-div1">
@@ -48,7 +48,7 @@ class ProfileDropDown extends React.Component{
             </button>
           </div>
         </div>
-      );
+      )};
         
       const history = this.props.history[this.props.history.length-1];
       // eslint-disable-next-line

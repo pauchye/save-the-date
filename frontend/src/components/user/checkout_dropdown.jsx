@@ -46,7 +46,11 @@ class CheckOut extends React.Component {
           {idx + 9}:00 - {event.title}      ${event.price}
         </li>
       )
-      }
+    } else {
+      return(
+        <div></div>
+      )
+    }
     });
 
     console.log(sum);

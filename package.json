@@ -6,6 +6,7 @@
   "dependencies": {
     "@react-google-maps/api": "^1.9.6",
     "aws-sdk": "^2.698.0",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",

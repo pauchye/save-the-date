@@ -208,14 +208,23 @@ class Dash extends React.Component {
      }
 
     componentDidMount(){
-      const userId = this.props.currentUser.id;
-      this.props.updateUser(userId);
+      // const userId = this.props.currentUser.id;
+      // const modUser = this.props.currentUser;
+      // this.props.updateUser(modUser);
+      // console.log('this.props.currentUser', this.props.currentUser)
+      // this.props.fetchUser(this.props.currentUser.id).then(
+      //   (res) => {
+      //     console.log('thisUser', res)
+      //     console.log('currentUser', this.props.currentUser)
+      //     this.setState({thisUser: res})}
+      // );
 
       // debugger        
       this.props.fetchEvents().then(
-          () => this.setState({filteredEvents: this.props.events[0]})
+          () => {
+            debugger
+            this.setState({filteredEvents: this.props.events[0]})}
       );
-
     }
 
 
