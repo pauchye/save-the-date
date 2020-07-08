@@ -43,11 +43,14 @@ router.post("/register", (req, res) => {
               .save()
               .then(user => {
                 const payload = { id: user.id, handle: user.handle };
-  
-                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+                const userReg = user.toJSON();
+                delete userReg.password;
+                jwt.sign(payload, keys.secretOrKey, (err, token) => {
                   res.json({
                     success: true,
-                    token: "Bearer " + token
+                    token,
+                    user: userReg
+                    // token: "Bearer " + token
                   });
                 });
               })
@@ -76,12 +79,15 @@ router.post("/login", (req, res) => {
   
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
-          const payload = { id: user.id, handle: user.handle, email: user.email, history: user.history};
-  
-          jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+          const payload = { id: user.id, handle: user.handle, email: user.email };
+          const userNew = user.toJSON();
+          delete userNew.password;
+          jwt.sign(payload, keys.secretOrKey, (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token,
+              user: userNew
+              // token: "Bearer " + token
             });
           });
         } else {
