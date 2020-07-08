@@ -9,6 +9,7 @@ const mSTP = state => {
 
     return {
       history: state.session.user.history,
+      currentUser: state.session.user,
     };
 }
 
@@ -27,10 +28,15 @@ class ProfileDropDown extends React.Component{
     }
 
 
+
     handleClick(e){
       e.preventDefault();
       this.props.logout();
       this.props.closeModal();
+    }
+
+    componentDidMount(){
+      
     }
 
     render(){
