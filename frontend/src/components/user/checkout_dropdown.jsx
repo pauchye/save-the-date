@@ -58,7 +58,7 @@ class CheckOut extends React.Component {
     return (
       <div className="modal-child-div-cart">
         <div className="modal-child-div1">
-          <a href="#/profile">Profile</a>
+          {/* <a href="#/profile">Profile</a> */}
           <h2>Your Cart</h2>
           <h4>For Date {history[0]}</h4>
           <ul className="modal-ul">{allEvents}</ul>
@@ -67,7 +67,7 @@ class CheckOut extends React.Component {
         </div>
 
         <div>
-          <button onClick={this.handleClick}>Check Out</button>
+          {/* <button onClick={this.handleClick}>Check Out</button> */}
         </div>
       </div>
     );
