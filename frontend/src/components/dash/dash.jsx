@@ -193,17 +193,21 @@ const jsonStyle = [
 class Dash extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {date: '',
-      filteredEvents: this.props.events
-    };
+      this.state = {
+        date: '',
+        filteredEvents: this.props.events 
+      };
+
       this.handleChange = this.handleChange.bind(this)
       this.filterListings = this.filterListings.bind(this)
       this.onReady = this.onReady.bind(this)
       
+      // this.handleClick = this.handleClick.bind(this)
     }
 
     static defaultProps = {
-        center: {lat: 40.7678805, lng: -73.97103059999999}, 
+        // center: {lat: 40.7678805, lng: -73.97103059999999}, // midtown
+        center: {lat: 40.716557, lng: -74.001955},    // downtown
         zoom: 13
      }
 
@@ -236,36 +240,103 @@ class Dash extends React.Component {
     }
 
     filterListings(mapProps, map) {
-      this.map = map;
-      let NElat = this.map.getBounds().getNorthEast().lat();
-      let NElng = this.map.getBounds().getNorthEast().lng();
-      let SWlat = this.map.getBounds().getSouthWest().lat();
-      let SWlng = this.map.getBounds().getSouthWest().lng();
-      // console.log('this.props.events[0]', this.props.events[0])
-      // console.log('this.state', this.state)
-      let filteredEvents = this.props.events[0].filter(event => {
-        return(
-            (event.lat < NElat && event.lat > SWlat)&&(event.lng < NElng && event.lng > SWlng)
-        )
-      })
-      this.setState({filteredEvents: filteredEvents})
-      // console.log('this.state', this.state)
+        this.map = map;
+        let NElat = this.map.getBounds().getNorthEast().lat();
+        let NElng = this.map.getBounds().getNorthEast().lng();
+        let SWlat = this.map.getBounds().getSouthWest().lat();
+        let SWlng = this.map.getBounds().getSouthWest().lng();
+        console.log('this.props.events[0]', this.props.events[0])
+        console.log('this.state', this.state)
+        let filteredEvents = this.props.events[0].filter(event => {
+            return(
+                (event.lat < NElat && event.lat > SWlat)&&(event.lng < NElng && event.lng > SWlng)
+            )
+        })
+        this.setState({filteredEvents: filteredEvents})
+        console.log('this.state', this.state)
 
     }
 
     onReady(props, map) {
         this.map = map;
-        // console.log('onReady map:', this.map.getBounds())
-    }
 
+    onMarkerClick = (props, marker, e) => {
+      console.log('hello')
+      
+      this.setState({
+        // activeMarkerName: props.name,
+        activeMarkerTitle: props.title,
+        activeMarkerId: props.id,
+        // activeMarkerRevision: props.revision,
+        activeMarker: marker,
+        showingInfoWindow: true,
+      });
+      console.log(this.state)
+    };
 
     render() {
 
         const events = this.props.events[0];        
         if(!events) return null;
 
+        console.log(events)
+
         return (
-          <div className = "dash-body">
+<!-- <<<<<<< css -->
+            <div className = "dash-body">
+                <div className = "dash-cont">
+                  <Map 
+                    styles = {jsonStyle}    
+                    // options={mapOptions}    
+                    style={{
+                      width: '40%', 
+                      height: '85%', 
+                      position: 'relative',
+                      borderRadius: "20px",
+                    }}
+                    google={this.props.google} 
+                    zoom={14} 
+                    initialCenter={{
+                        // lat: 40.7678805,
+                        // lng: -73.97103059999999
+                        lat: 40.716557,   // downtown
+                        lng: -74.001955
+                      }}
+                      onReady= {this.onReady}
+                      onZoomChanged = {this.filterListings}
+                      onDragend = {this.filterListings}
+                    > 
+                        {/* {events.map((event, id) => ( */}
+                        {events.map((event, id) => (
+                          // let lat = event.lat;
+                          // let lng = event.lng;
+                              <Marker
+                                      key={id}
+                                      title={event.title}
+                                      // position={40.7678805, -73.97103059999999}
+                                      position={{lat: event.lat, lng: event.lng}}
+                                      // position={{lat, lng}}
+
+                                      className="Marker"
+                                      // onClick={() => this.map.panTo(event.lat, event.lng)} 
+                                      onClick={this.onMarkerClick} 
+                                    />   
+                                  ))}
+                                <InfoWindow 
+                                  marker={this.state.activeMarker}
+                                  visible={this.state.showingInfoWindow} 
+                                  // position={{lat: event.lat, lng: event.lng}}
+                                >
+                                  <div>
+                                    <h1>{this.state.activeMarkerTitle}</h1>
+                                  </div>
+                                </InfoWindow>
+                              </Map>
+                </div>
+
+                
+<!-- ======= -->
+<!--           <div className = "dash-body">
             <div className = "dash-cont">
               <Map 
                 styles = {jsonStyle}    
@@ -284,7 +355,7 @@ class Dash extends React.Component {
                   onZoomChanged = {this.filterListings}
                   onDragend = {this.filterListings}
               > 
-                {
+<!--                 {
                   events.map((event, id)=>{
                     let lat = event.lat;
                     let lng = event.lng;
@@ -297,10 +368,11 @@ class Dash extends React.Component {
                       onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
                     />
                   })
-                }
+                } -->
 
-              </Map>
-            </div>
+<!--               </Map> -->
+<!--             </div> --> -->
+<!-- >>>>>>> master -->
                 <div className="dash-right" >
                     <div> 
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
