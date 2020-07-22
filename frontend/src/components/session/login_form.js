@@ -18,17 +18,13 @@ class LoginForm extends React.Component {
 
   }
 
-  // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
       this.props.history.push("/dash");
     }
-
-    // Set or clear errors
     this.setState({ errors: nextProps.errors });
   }
 
-  // Handle field updates (called in the render method)
   update(field) {
     return (e) =>
       this.setState({
@@ -36,10 +32,9 @@ class LoginForm extends React.Component {
       });
   }
 
-  // Handle form submission
   handleSubmit(e) {
     e.preventDefault();
-
+    // debugger
     let user = {
       email: this.state.email,
       password: this.state.password,
@@ -52,14 +47,13 @@ class LoginForm extends React.Component {
     e.preventDefault();
     this.setState(
       {
-        email: "visitor@example.com",
-        password: "password",
+        email: "test@123.com",
+        password: "123456",
       },
       () => this.props.login(Object.assign({}, this.state))
     );
   }
 
-  // Render the session errors if there are any
   renderErrors() {
     return (
       <ul>
@@ -80,7 +74,7 @@ class LoginForm extends React.Component {
             </button>
           </div>
             {this.renderErrors()}
-          <img className="phone" src={require(`./phone2.png`)}></img>
+          <img className="phone" src={require(`./phone2.png`)} alt="" ></img>
           <div className="login-form">
             <input
               className="login-email"

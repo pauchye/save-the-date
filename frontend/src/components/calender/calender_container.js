@@ -6,9 +6,6 @@ import { updateUser } from "../../actions/user_actions";
 
 
 const mapStateToProps = (state) => {
-  // const userId = state.session.user.id
-
-  // debugger;
     return {
       currentUser: state.session.user,
     };
@@ -17,7 +14,6 @@ const mapStateToProps = (state) => {
 
 
 const mapDispatchToProps = dispatch => {
-  // debugger;
     return {
       fetchUser: (userId) => dispatch(fetchUser(userId)),
       updateUser: (user) => dispatch(updateUser(user)),

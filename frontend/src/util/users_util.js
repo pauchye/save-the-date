@@ -1,24 +1,13 @@
 import axios from "axios";
 
-// export const fetchUsers = () => {
-//   return axios.get("/api/users");
-// };
-
-export const fetchUser = (userId) => {
-  return axios.get(`api/users/${userId}`);
+export const fetchUser = () => {
+  debugger
+  return axios.get(`api/users/current`);
 };
 
-// export const updateUser = (user, newdata) => {
-//   return axios({
-//     url: `api/users/${user.id}`,
-//     method: "PATCH",
-//     data: {
-//       history: newdata,
-//     },
-//   });
-// }
-
 export const updateUser = (user) => {
+  // debugger
+  // console.log('users_util_wildcard', user.id)
   return axios.patch(`api/users/${user.id}`,{
     history: user.history
   });

@@ -13,19 +13,16 @@
     top: 28%;
     right: 20%;
     transform: translate(-50%, -50%);
-    // background-color: lightsalmon;
 }
 
 .modal-child-div{
     position: absolute;
-    // background-color: lightseagreen;
     width: 230px;
     height: 300px;
 
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 20px;
     z-index: 1;
-    // border: 1px solid grey;
     border-radius: 20px;
     background-color: rgb(165, 228, 249);
     display: flex;
@@ -45,4 +42,37 @@
 .modal-ul{
     list-style-type: none;
     padding-left: 0;
+}
+
+
+.modal-background-date{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(230, 151, 151, 0);
+    z-index: 5;
+}
+
+.modal-child-date{
+    position: absolute;
+    top: 11%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.date-child-div{
+    position: absolute;
+    width: 230px;
+    height: 300px;
+
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1;
+    border-radius: 20px;
+    background-color: rgb(97, 199, 160);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

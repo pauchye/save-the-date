@@ -22,6 +22,10 @@ const EventSchema = new Schema({
     type: Array,
     required: true,
   },
+  price: {
+    type: Number,
+    default: 0
+  }
 });
 
 module.exports = Event = mongoose.model("event", EventSchema);

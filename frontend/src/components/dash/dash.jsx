@@ -1,15 +1,14 @@
 import React from 'react';
-// import MapView from '../map/map';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import mapCSS from './_dash.css';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import './_dash.css';
 import secrets from '../../secrets';
 import CalendarContainer from '../calender/calender_container';
-import { openModal } from '../../actions/modal_actions';
-import LocationShow from './location_show';
+// import { openModal } from '../../actions/modal_actions';
+// import LocationShow from './location_show';
 
 const {googleMapKey} = secrets;
 
-const markers = [ {lat: 40.8678805, lng: -73.87103059999999}, {lat: 40.05, lng: -73.9999999}, {lat: 40.7678805, lng: -73.97103059999999}]
+// const markers = [ {lat: 40.8678805, lng: -73.87103059999999}, {lat: 40.05, lng: -73.9999999}, {lat: 40.7678805, lng: -73.97103059999999}]
 
 const jsonStyle = [
     {
@@ -194,15 +193,11 @@ const jsonStyle = [
 class Dash extends React.Component {
     constructor(props) {
       super(props);
-      // debugger;
-    //   this.props.fetchEvents();
       this.state = {
         date: '',
         filteredEvents: this.props.events 
       };
 
-    //   this.state.filteredDinings = this.props.dinings;
-        // debugger
       this.handleChange = this.handleChange.bind(this)
       this.filterListings = this.filterListings.bind(this)
       this.onReady = this.onReady.bind(this)
@@ -217,18 +212,25 @@ class Dash extends React.Component {
      }
 
     componentDidMount(){
-        // this.props.fetchUsers();
-        
-        const userId = this.props.currentUser.id;
-        this.props.fetchUser(userId);
-        
-        this.props.fetchEvents().then(
-            () => this.setState({filteredEvents: this.props.events[0]})
-        );
-        // this.props.fetchDinings();
-        // this.setState({filteredEvents: this.props.events[0]})
-        // debugger
+      // const userId = this.props.currentUser.id;
+      // const modUser = this.props.currentUser;
+      // this.props.updateUser(modUser);
+      // console.log('this.props.currentUser', this.props.currentUser)
+      // this.props.fetchUser(this.props.currentUser.id).then(
+      //   (res) => {
+      //     console.log('thisUser', res)
+      //     console.log('currentUser', this.props.currentUser)
+      //     this.setState({thisUser: res})}
+      // );
+
+      // debugger        
+      this.props.fetchEvents().then(
+          () => {
+            debugger
+            this.setState({filteredEvents: this.props.events[0]})}
+      );
     }
+
 
 
     handleChange(input){
@@ -257,8 +259,6 @@ class Dash extends React.Component {
 
     onReady(props, map) {
         this.map = map;
-        console.log('onReady map:', this.map.getBounds())
-    }
 
     onMarkerClick = (props, marker, e) => {
       console.log('hello')
@@ -276,17 +276,13 @@ class Dash extends React.Component {
 
     render() {
 
-        const events = this.props.events[0];
-        // const dinings = this.props.dinings[0];
-        
+        const events = this.props.events[0];        
         if(!events) return null;
-        
-        // if(!dinings) return null;
-        // debugger
 
         console.log(events)
 
         return (
+<!-- <<<<<<< css -->
             <div className = "dash-body">
                 <div className = "dash-cont">
                   <Map 
@@ -339,35 +335,64 @@ class Dash extends React.Component {
                 </div>
 
                 
+<!-- ======= -->
+<!--           <div className = "dash-body">
+            <div className = "dash-cont">
+              <Map 
+                styles = {jsonStyle}    
+                style={{width: '40%', 
+                height: '85%', 
+                position: 'relative',
+                borderRadius: "20px",
+                }}
+                google={this.props.google} 
+                zoom={14} 
+                initialCenter={{
+                    lat: 40.7678805,
+                    lng: -73.97103059999999
+                  }}
+                  onReady= {this.onReady}
+                  onZoomChanged = {this.filterListings}
+                  onDragend = {this.filterListings}
+              > 
+<!--                 {
+                  events.map((event, id)=>{
+                    let lat = event.lat;
+                    let lng = event.lng;
+
+                    return <Marker
+                      key={id}
+                      title={event.title}
+                      position={{lat, lng}}
+                      className="Marker"
+                      onClick={() => this.map.panTo({ lat: event.lat, lng: event.lng })} 
+                    />
+                  })
+                } -->
+
+<!--               </Map> -->
+<!--             </div> --> -->
+<!-- >>>>>>> master -->
                 <div className="dash-right" >
                     <div> 
                         <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')}/>
                     </div>
 
-                    <a onClick={() => openModal("checkOut")}></a>
+                    {/* <a onClick={() => openModal("checkOut")}></a> */}
                     <div>
 
                     <CalendarContainer 
                       events={this.state.filteredEvents}
                       date = {this.state.date}
-                      
                     />
-                </div>
-                    {/* <div className="dash-placehold">
-                        <ul>
-                          {this.state.filteredEvents.map((event, id)=>
-                           {return (<li key={id}>{event.title}</li>)})}
-                        </ul>
-                    </div> */}
-                  
+                </div>                
             </div>
-            </div>
+          </div>
         )
     }
 
 }
 
 export default GoogleApiWrapper({
-    apiKey: googleMapKey
-  })(Dash)
-// export default Dash;
+  apiKey: googleMapKey
+})(Dash)

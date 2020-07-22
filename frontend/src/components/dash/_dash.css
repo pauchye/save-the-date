@@ -5,45 +5,23 @@
 .dash-cont {
     height: 100%;
     width: 50%!important;
-    /* position: absolute; */
     z-index: 1;
     background-image: linear-gradient(rgb(247, 210, 247),rgb(243, 245, 246),rgb(243, 245, 246));
     padding-left: 4%;
 }
 
-/* [type="date"] {
-    background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
-  }
-  [type="date"]::-webkit-inner-spin-button {
-    display: none;
-  }
-  [type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-  } */
   .dash-right {
-      /* background-color: burlywood; */
       width: 50%;
-      /* border: 2px solid red; */
-      /* height: 600px; */
       border-radius: 20px;
-      /* padding-right: 4%; */
-      /* background-color: cornflowerblue; */
       z-index: 2;
-      /* display: flex;
-      flex-direction: column;
-      align-items: center; */
-      /* justify-content: center; */
       margin-right: 5%;
   }
   .dash-cal {
-    /* margin-top: 40px; */
     border: 1px solid #c4c4c4;
     border-radius: 5px;
     background-image: linear-gradient(-90deg,rgb(247, 210, 247),rgb(243, 245, 246),rgb(165, 228, 249));
-    /* background-color: #fff; */
     padding: 7px 30px;
     box-shadow: inset 0 3px 6px rgba(66, 1, 61, 0.1);
-    /* width: 190px; */
     z-index: 5;
     margin-bottom: 10px;
   }

@@ -1,15 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// import navbarCSS from "./_navbar.css";
 import "./navbar.scss";
 
 const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
-    // debugger;
   const sessionLinks = () => (
     <div className="navbar">
-      {/* <h1 className="logo">Save the Date</h1> */}
-      <img className="logo" src={require(`./logo.png`)}></img>
+      <img className="logo" src={require(`./logo.png`)} alt=""></img>
       <div className="navbar-links">
         <Link className="login-demo-button" to={"/signup"}>Signup</Link>
         <Link className="login-demo-button" to={"/login"}>Login</Link>
@@ -19,16 +15,18 @@ const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
 
   const greeting = () => (
     <div className="navbar">
-      {/* <h1>Save the Date</h1> */}
-      <img className="logo" src={require(`./logo.png`)}></img>
-
-      <a className="user-modal" onClick={() => {
-        fetchUser(currentUser.id)
-        openModal("profileDropDown")
-        }}>
-        <img src={require('./calendar.png')} className="welcomeuser"/>
-        <span > {currentUser.handle}</span>
+      <a href="#/dash">
+        <img className="logo" src={require(`./logo.png`)} alt=""/>
       </a>
+      <div className="user-modal" onClick={() =>
+        openModal("profileDropDown")
+        }
+      >
+
+        <img src={require('./calendar.png')} className="welcomeuser" alt="" />
+        <span > {currentUser.handle}</span>
+      </div>
+
     </div>
   );
 

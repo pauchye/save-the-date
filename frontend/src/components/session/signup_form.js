@@ -23,7 +23,7 @@ class SignupForm extends React.Component {
     if (nextProps.signedIn === true) {
       this.props.history.push('/dash'); 
     }
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({errors: nextProps.errors});
   }
 
@@ -64,7 +64,7 @@ class SignupForm extends React.Component {
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit}>
       {this.renderErrors()}
-          <img className="phone" src={require(`./phone1.png`)}></img>
+          <img className="phone" src={require(`./phone1.png`)} alt=""></img>
           <div className="signup-form">
             <br/>
               <input className="email" type="text"

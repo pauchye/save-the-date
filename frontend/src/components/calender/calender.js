@@ -1,6 +1,6 @@
 import React from "react";
-import calenderCSS from "./_calender.css";
-import { Link } from "react-router-dom";
+import "./_calender.css";
+// import { Link } from "react-router-dom";
 
 class Calender extends React.Component {
   constructor(props) {
@@ -30,7 +30,6 @@ class Calender extends React.Component {
     this.drop = this.drop.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.reloadList = this.reloadList.bind(this);
-    // this.deleteEvent = this.deleteEvent.bind(this)
   }
 
   reloadList() {
@@ -39,66 +38,62 @@ class Calender extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // console.log(this.props.currentUser);
-    // debugger;
     const date = this.props.date;
-    // const schedule = "test";
     const schedule = Object.values(this.state).slice(0, 16);
-
+    if (!this.props.currentUser.history){
+      this.props.currentUser.history = []
+    }
+    // debugger
     this.props.currentUser.history.push([date, schedule]);
-
-    console.log(this.props.currentUser.history);
+    // console.log(this.props.currentUser.history);
     const modifiedUser = this.props.currentUser;
-
-    // this.props.updateUser(modifiedUser)
+    debugger
     this.props.updateUser(modifiedUser);
-    this.props.fetchUser(this.props.currentUser.id);
+    // this.props.fetchUser(this.props.currentUser.id);
   }
 
   drag(e) {
-    // debugger
-    // let classNameTarget = e.target.className ||
     e.dataTransfer.setData("text/plain", e.target.className);
     let data = e.dataTransfer.getData("text/plain");
     this.selected = e.target.className;
-    // debugger
-    // this.allEvents[this.selected] = {};
     this.setState({
       [e.target.className]: document.getElementsByClassName(data)[0],
     });
-    // debugger
-    // e.target.appendChild(document.getElementsByClassName(data)[0]);
   }
 
   allowDrop(e) {
     e.preventDefault();
   }
 
-  // deleteEvent(e){
-  //     let parentNode = e.target.parentNode;
-  //     // debugger
-  //     parentNode.remove()
-  //     // debugger
-  // }
-
   drop(e) {
     e.preventDefault();
-    // debugger
     e.dataTransfer.setData("text/plain", e.target.className);
     let data = e.dataTransfer.getData("text/plain");
-    // debugger
     let thisNode = document.getElementsByClassName(data)[0];
-    if (thisNode) {
-      let copiedNode = thisNode.cloneNode(true);
-      // e.target.appendChild(document.getElementsByClassName(data)[0]);
-      e.target.appendChild(copiedNode);
-      console.log("this.allEvents 1", this.allEvents);
-      console.log("this.state 1", this.state);
-      this.setState({ [e.target.className]: this.allEvents[this.selected] });
-      console.log("this.allEvents 2", this.allEvents);
 
-      console.log("this.state 2", this.state);
+    if (this.validCheck()){
+      if (thisNode) {
+        let copiedNode = thisNode.cloneNode(true);
+        // debugger;
+        if (e.target.childElementCount === 1)
+        e.target.appendChild(copiedNode);
+        this.setState({ [e.target.className]: this.allEvents[this.selected] });
+      }
     }
+    
+  }
+
+  validCheck(){
+    const schedule = Object.values(this.state).slice(0, 16).filter(event => event !== "");
+    const count = {};
+    schedule.forEach((event) =>{
+      if(!count[event.title]) count[event.title] = 0;
+      count[event.title] += 1;
+    });
+    const boo = Object.values(count).every(count => count < 2)
+    console.log(boo);
+    console.log(count);
+    return boo
   }
 
   render() {
@@ -112,10 +107,8 @@ class Calender extends React.Component {
           {" "}
           Clear the List!{" "}
         </button>
-        {/* <Link className='cal-button' to='/dash'> Clear the List! </Link> */}
         <div className="calender-results-page">
           <div className="calender">
-            <div>{/* <h3>{this.props.date}</h3> */}</div>
             <div className="8" onDrop={this.drop} onDragOver={this.allowDrop}>
               <h4>TIME</h4>
               <div
@@ -199,25 +192,21 @@ class Calender extends React.Component {
             <h3>Events at This Location</h3>
 
             {this.props.events.map((event, id) => {
-              {
+              
                 this.allEvents[event.title] = event;
-              }
+              
               return (
                 <div
                   key={id}
                   draggable="true"
-                  //    id={id}
                   className={event.title}
                   onDragStart={this.drag}
                 >
                   <h4>{event.title}</h4>
                   <h6>{event.description}</h6>
-                  {/* <h6 onClick={this.deleteEvent} >X</h6> */}
                 </div>
               );
             })}
-
-            {/* <h4>DINING EVENT</h4> */}
           </div>
         </div>
       </div>

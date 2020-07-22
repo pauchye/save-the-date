@@ -2,16 +2,12 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
-//import webtoken
 const jwt = require('jsonwebtoken');
-//importing keys
 const keys = require('../../config/secrets');
 const passport = require('passport');
-//import validations
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-// private auth route 
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
     res.json({
       id: req.user.id,
@@ -47,11 +43,14 @@ router.post("/register", (req, res) => {
               .save()
               .then(user => {
                 const payload = { id: user.id, handle: user.handle };
-  
-                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+                const userReg = user.toJSON();
+                delete userReg.password;
+                jwt.sign(payload, keys.secretOrKey, (err, token) => {
                   res.json({
                     success: true,
-                    token: "Bearer " + token
+                    token,
+                    user: userReg
+                    // token: "Bearer " + token
                   });
                 });
               })
@@ -80,12 +79,15 @@ router.post("/login", (req, res) => {
   
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
-          const payload = { id: user.id, handle: user.handle, email: user.email, history: user.history};
-  
-          jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+          const payload = { id: user.id, handle: user.handle, email: user.email };
+          const userNew = user.toJSON();
+          delete userNew.password;
+          jwt.sign(payload, keys.secretOrKey, (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token,
+              user: userNew
+              // token: "Bearer " + token
             });
           });
         } else {
@@ -97,14 +99,11 @@ router.post("/login", (req, res) => {
   });
 
 
-
-
   router.patch("/:id", (req, res) => {
-    // debugger;
-    // User.findById(req.params.id).update({ history: req.body.history })
     User.findById(req.params.id)
-      .update({ $push: { history: req.body.history } })
-      // .update({ history: req.body.history })
+      .update({
+        history: req.body.history
+      })
       .then((result) => {
         res.json(result);
       });

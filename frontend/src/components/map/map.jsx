@@ -6,7 +6,6 @@ const mapKey = require('../../secrets').googleMapKey
 export class MapView extends React.Component {
     constructor(props) {
         super(props)
-        // debugger
     }
 
     static defaultProps = {
@@ -16,8 +15,7 @@ export class MapView extends React.Component {
 
 
     render() {
-        // debugger
-        console.log('google.maps', this.props.google.maps.LatLngBounds )
+        // console.log('google.maps', this.props.google.maps.LatLngBounds )
         return(
 
                 <Map 
@@ -33,15 +31,6 @@ export class MapView extends React.Component {
                     title={'Title 1'}
                     name={'Name 1'}
                     position={{lat: 37.778519, lng: -122.405640}} />
- 
-                    {/* <Marker onClick={this.onMarkerClick}
-                            name={'Current location'} /> */}
-            
-                    {/* <InfoWindow onClose={this.onInfoWindowClose}>
-                        <div>
-                        <h1>{this.state.selectedPlace.name}</h1>
-                        </div>
-                    </InfoWindow> */}
                 </Map>
         )
     }
