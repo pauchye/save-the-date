@@ -10,6 +10,7 @@ import { fetchUser } from './util/users_util';
 
 document.addEventListener('DOMContentLoaded', async () => {
   let store;
+  // window.logout = logout();
   if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
     // let decodedUser = jwt_decode(localStorage.jwtToken);
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     //    preloadedState = { session: { isAuthenticated: true, user: res.data } }
     //    store = configureStore(preloadedState);
     // })
-    debugger
+    // debugger
     preloadedState = { session: { isAuthenticated: true, user: response.data } }
     store = configureStore(preloadedState);
 
@@ -37,3 +38,4 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   ReactDOM.render(<Root store={store} />, root);
 });
+

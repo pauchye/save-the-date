@@ -47,7 +47,7 @@ class Calender extends React.Component {
     this.props.currentUser.history.push([date, schedule]);
     // console.log(this.props.currentUser.history);
     const modifiedUser = this.props.currentUser;
-    debugger
+    // debugger
     this.props.updateUser(modifiedUser);
     // this.props.fetchUser(this.props.currentUser.id);
   }

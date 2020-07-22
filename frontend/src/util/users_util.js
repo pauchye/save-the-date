@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const fetchUser = () => {
-  debugger
+  // debugger
   return axios.get(`api/users/current`);
 };
 
