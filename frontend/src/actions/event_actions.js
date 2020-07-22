@@ -4,7 +4,7 @@ export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 
 const receiveEvents = (events) => {
-  debugger
+  // debugger
   return {
   type: RECEIVE_EVENTS,
   events,
@@ -16,7 +16,7 @@ const receiveEvent = (event) => ({
 });
 
 export const fetchEvents = () => dispatch => {
-    debugger
+    // debugger
     return getEvents()
         .then(events => dispatch(receiveEvents(events)))
 };

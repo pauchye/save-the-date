@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getEvents = () => {
-    debugger
+    // debugger
     return axios.get('/api/events')
 }
 
