@@ -24,7 +24,7 @@ const NavBar = ({ loggedIn, currentUser, fetchUser, openModal }) => {
       >
 
         <img src={require('./calendar.png')} className="welcomeuser" alt="" />
-        <span > {currentUser.handle}</span>
+        <span > Hey, {currentUser.handle}!</span>
       </div>
 
     </div>

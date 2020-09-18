@@ -2,8 +2,15 @@ const mongoose = require('mongoose');
 const express = require("express");
 const app = express();
 const mongoUri = require('./config/secrets').mongoURI;
+// const TWILIO_ACCOUNT_SID = require('./config/secrets').TWILIO_ACCOUNT_SID;
+// const TWILIO_AUTH_TOKEN = require('./config/secrets').TWILIO_AUTH_TOKEN;
 const bodyParser = require('body-parser');
 const path = require('path');
+
+// const client = require('twilio')(
+//   TWILIO_ACCOUNT_SID,
+//   TWILIO_AUTH_TOKEN
+// );
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
@@ -22,6 +29,9 @@ app.use("/api/events", events);
 
 const dinings = require("./routes/api/dinings");
 app.use("/api/dinings", dinings);
+
+const messages = require("./routes/api/messages");
+app.use("/api/messages", messages);
 
 const passport = require('passport');
 const router = require('./routes/api/users');

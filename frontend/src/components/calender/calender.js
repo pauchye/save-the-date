@@ -107,6 +107,7 @@ class Calender extends React.Component {
           {" "}
           Clear the List!{" "}
         </button>
+        
         <div className="calender-results-page">
           <div className="calender">
             <div className="8" onDrop={this.drop} onDragOver={this.allowDrop}>
