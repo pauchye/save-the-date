@@ -313,9 +313,11 @@ class Dash extends React.Component {
           </Map>
         </div>
         <div className="dash-right" >
-          <div>
+          <div className="dash-data-cont">
             <input className="dash-cal" type="date" value={this.state.date} onChange={this.handleChange('date')} />
+            {/* <div>Drag the events on the right to create your ideal date!</div> */}
           </div>
+          
           <a onClick={() => openModal("checkOut")}></a>
           <div>
             <CalendarContainer

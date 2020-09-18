@@ -1,21 +1,27 @@
 .calender-results-page{
     display: flex;
-    background-color: rgb(165, 228, 249);
-    border-radius: 20px;
+    /* background-color: rgb(165, 228, 249); */
+    /* border-radius: 20px; */
+    /* padding: 10px; */
     /* margin-right: 10%; */
 }
 
 .calender{
     display: flex;
     flex-direction: column;
-    border: 5px solid rgb(247, 210, 247);
+    /* border: 5px solid rgb(247, 210, 247); */
     /* width: 30%; */
-    margin: 3%;
+    margin: 1%;
+    margin-left: 0px;
     min-width: 55%;
+    background-color: rgb(165, 228, 249); 
+    border-radius: 20px; 
+    padding: 20px;
 }
 
 .calender div{
     border: 3px solid  rgb(247, 210, 247);
+    border-radius: 3px; 
     display: flex;
     width: 100%;
     background-color: rgb(165, 228, 249);
@@ -42,12 +48,26 @@ h3{
     flex-direction: column;
     /* width: 50%; */
     min-width: 40%;
-    border: 10px solid rgb(247, 210, 247);
-    margin: 5%;
+    /* border: 10px solid rgb(247, 210, 247); */
+    margin: 1%;
+    background-color: rgb(165, 228, 249); 
+    border-radius: 20px; 
+    padding: 20px;
+}
+
+h3{
+    border: 3px solid  rgb(247, 210, 247);
+    border-radius: 3px;  
+    display: flex;
+    width: calc(100% - 10px);
+    background-color: rgb(165, 228, 249);
+    margin: 0%;
+    padding: 5px;
 }
 
 .results div{
     border: 3px solid  rgb(247, 210, 247);
+    border-radius: 3px; 
     display: flex;
     width: 100%;
     background-color: rgb(165, 228, 249);

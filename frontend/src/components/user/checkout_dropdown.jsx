@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchEvents } from '../../actions/event_actions';
+import Message from '../message/message'
+import './checkout.css'
 
 const mSTP = (state) => {
   if (!state.session.user) return null;
@@ -53,21 +55,34 @@ class CheckOut extends React.Component {
     }
     });
 
+    let messageToSend = "" 
+    history[1].forEach((event, idx) => {
+      if (event){
+        messageToSend += `${idx + 9}:00 - ${event.title} at ${event.description} \n` 
+    }
+    });
+    let dateDate = history[0] 
+
     console.log(sum);
     
     return (
-      <div className="modal-child-div-cart">
-        <div className="modal-child-div1">
+      <div className="checkout-main">
+        <div className="checkout-body">
+        <div className="checkout-text">
           {/* <a href="#/profile">Profile</a> */}
-          <h2>Your Cart</h2>
-          <h4>For Date {history[0]}</h4>
+          <h2>Enjoy your Date</h2>
+          <h4>On {history[0]}</h4>
           <ul className="modal-ul">{allEvents}</ul>
           <h4>Total: ${sum}</h4>
 
         </div>
+        <div>Text details to your date: </div>
+
+        <Message details={messageToSend} dateDate={dateDate}/>
 
         <div>
           {/* <button onClick={this.handleClick}>Check Out</button> */}
+        </div>
         </div>
       </div>
     );

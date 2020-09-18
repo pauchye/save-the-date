@@ -24,12 +24,19 @@ class ProfileDropDown extends React.Component{
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleCheckout = this.handleCheckout.bind(this);
     }
 
 
     handleClick(e){
       e.preventDefault();
       this.props.logout();
+      this.props.closeModal();
+    }
+
+    handleCheckout(e){
+      e.preventDefault();
+      window.location.hash = `/checkout`
       this.props.closeModal();
     }
 
@@ -64,17 +71,27 @@ class ProfileDropDown extends React.Component{
         return (
           <div className="modal-child-div">
             <div className="modal-child-div1">
-              <a href="#/profile">Profile</a>
-              <h2>Your past schedule</h2>
-              <h4>{history[0]}</h4>
-              <ul className="modal-ul">{allEvents}</ul>
-              <a href="#/checkout">Check Out</a>
-            </div>
-
-            <div>
+              {/* <a href="#/profile">Profile</a> */}
               <button onClick={this.handleClick} className="dash-cal">
                 Logout
               </button>
+              <h2>Your schedule</h2>
+              <h4>{history[0]}</h4>
+              <ul className="modal-ul">{allEvents}</ul>
+              {/* <a href="#/checkout">Check Out</a> */}
+            </div>
+            <button onClick={this.handleCheckout} className="dash-cal">
+                Checkout
+            </button>
+
+            <div>
+            {/* <button onClick={this.handleCheckout} className="dash-cal">
+                Checkout
+            </button> */}
+
+              {/* <button onClick={this.handleClick} className="dash-cal">
+                Logout
+              </button> */}
             </div>
           </div>
         );

@@ -44,6 +44,7 @@
     /* width: 190px; */
     z-index: 5;
     margin-bottom: 10px;
+    font-weight: 700;
   }
 .dash-placehold {
     border-radius: 20px;
@@ -86,4 +87,13 @@
 }
 .gm-style-iw-t {
   bottom: 0px;
+}
+
+.dash-data-cont{
+  display: flex;
+}
+.dash-data-cont > div{
+  padding: 8px;
+  padding-left: 18px;
+  font-family: Arial, Helvetica, sans-serif;
 }
